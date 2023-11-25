@@ -1,6 +1,5 @@
 package be.vives.ti.dndweapons.domain;
 
-import be.vives.ti.dndweapons.domain.enums.CoinType;
 import be.vives.ti.dndweapons.domain.enums.DamageType;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
@@ -9,13 +8,13 @@ import jakarta.persistence.Enumerated;
 @Embeddable
 public class DamageRoll {
     private int amount;
-    private int dietype;
+    private int dieType;
     @Enumerated(EnumType.STRING)
     private DamageType damageType;
 
-    public DamageRoll(int amount, int dietype, DamageType damageType) {
+    public DamageRoll(int amount, int dieType, DamageType damageType) {
         this.amount = amount;
-        this.dietype = dietype;
+        this.dieType = dieType;
         this.damageType = damageType;
     }
 
@@ -31,12 +30,12 @@ public class DamageRoll {
         this.amount = amount;
     }
 
-    public int getDietype() {
-        return dietype;
+    public int getDieType() {
+        return dieType;
     }
 
-    public void setDietype(int dietype) {
-        this.dietype = dietype;
+    public void setDieType(int dietype) {
+        this.dieType = dietype;
     }
 
     public DamageType getDamageType() {

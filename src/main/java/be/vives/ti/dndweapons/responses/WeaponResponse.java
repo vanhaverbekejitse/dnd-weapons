@@ -1,61 +1,44 @@
-package be.vives.ti.dndweapons.domain;
+package be.vives.ti.dndweapons.responses;
 
+import be.vives.ti.dndweapons.domain.Cost;
+import be.vives.ti.dndweapons.domain.DamageRoll;
+import be.vives.ti.dndweapons.domain.Weapon;
 import be.vives.ti.dndweapons.domain.enums.ProficiencyType;
+import be.vives.ti.dndweapons.domain.WeaponRange;
 import be.vives.ti.dndweapons.domain.enums.RangeType;
 import be.vives.ti.dndweapons.domain.enums.WeaponProperty;
-import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entity
-public class Weapon {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class WeaponResponse {
     private Long id;
 
     private String name;
 
-    @Embedded
     private Cost cost;
 
-    @ElementCollection
     private List<DamageRoll> damageRolls;
 
     private double weight;
 
-    @ElementCollection
     private List<WeaponProperty> properties;
 
-    @Enumerated(EnumType.STRING)
     private RangeType rangeType;
 
-    @Enumerated(EnumType.STRING)
     private ProficiencyType proficiencyType;
 
-    @Embedded
     private WeaponRange range;
 
-    protected Weapon() {
-
-    }
-
-    public Weapon(
-            String name,
-            Cost cost,
-            List<DamageRoll> damageRolls,
-            double weight,
-            List<WeaponProperty> properties,
-            RangeType rangeType,
-            ProficiencyType proficiencyType,
-            WeaponRange range) {
-        this.name = name;
-        this.cost = cost;
-        this.damageRolls = damageRolls;
-        this.weight = weight;
-        this.properties = properties;
-        this.rangeType = rangeType;
-        this.proficiencyType = proficiencyType;
-        this.range = range;
+    public WeaponResponse(Weapon weapon) {
+        this.id = weapon.getId();
+        this.name = weapon.getName();
+        this.cost = weapon.getCost();
+        this.damageRolls = weapon.getDamageRolls();
+        this.weight = weapon.getWeight();
+        this.properties = weapon.getProperties();
+        this.rangeType = weapon.getRangeType();
+        this.proficiencyType = weapon.getProficiencyType();
+        this.range = weapon.getRange();
     }
 
     public Long getId() {

@@ -6,7 +6,6 @@ public enum WeaponProperty {
     HEAVY,
     LIGHT,
     LOADING,
-    RANGE,
     REACH,
     SPECIAL,
     THROWN,
