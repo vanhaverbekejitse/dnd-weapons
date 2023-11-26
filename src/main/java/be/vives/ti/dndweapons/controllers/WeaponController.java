@@ -1,13 +1,12 @@
 package be.vives.ti.dndweapons.controllers;
 
+import be.vives.ti.dndweapons.exceptions.ResourceNotFoundException;
 import be.vives.ti.dndweapons.repository.WeaponRepository;
+import be.vives.ti.dndweapons.responses.WeaponListResponse;
 import be.vives.ti.dndweapons.responses.WeaponResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/weapons")
@@ -20,7 +19,14 @@ public class WeaponController {
     }
 
     @GetMapping
-    public Page<WeaponResponse> findAllLectors(Pageable pageable){
-        return weaponRepository.findAll(pageable).map(WeaponResponse::new);
+    public Page<WeaponListResponse> findAllLectors(Pageable pageable){
+        return weaponRepository.findAll(pageable).map(WeaponListResponse::new);
+    }
+
+    @GetMapping("/{weaponId}")
+    public WeaponResponse retrieveWeaponById(@PathVariable(name = "weaponId") Long weaponId) {
+        return new WeaponResponse(
+                weaponRepository.findById(weaponId).orElseThrow(() -> new ResourceNotFoundException(weaponId.toString(), "weapon"))
+        );
     }
 }
