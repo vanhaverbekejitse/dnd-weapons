@@ -1,10 +1,8 @@
 package be.vives.ti.dndweapons;
 
-import be.vives.ti.dndweapons.domain.Cost;
-import be.vives.ti.dndweapons.domain.DamageRoll;
-import be.vives.ti.dndweapons.domain.Weapon;
-import be.vives.ti.dndweapons.domain.WeaponRange;
+import be.vives.ti.dndweapons.domain.*;
 import be.vives.ti.dndweapons.domain.enums.*;
+import be.vives.ti.dndweapons.repository.AttackRepository;
 import be.vives.ti.dndweapons.repository.WeaponRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -15,13 +13,20 @@ import java.util.List;
 @Component
 public class CommandLineRunnerAtStartup implements CommandLineRunner {
     private final WeaponRepository weaponRepository;
+    private final AttackRepository attackRepository;
 
-    public CommandLineRunnerAtStartup(WeaponRepository weaponRepository) {
+    public CommandLineRunnerAtStartup(WeaponRepository weaponRepository, AttackRepository attackRepository) {
         this.weaponRepository = weaponRepository;
+        this.attackRepository = attackRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        addWeapons();
+        addAttacks();
+    }
+
+    private void addWeapons() {
         // LONGSWORD
         Cost cost = new Cost(15, CoinType.GP);
         List<DamageRoll> damageRolls = new ArrayList<>();
@@ -62,5 +67,18 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
                 ProficiencyType.SIMPLE,
                 range2
         ));
+    }
+
+    private void addAttacks() {
+        // LONGSWORD
+        List<DamageRoll> damageRolls1 = new ArrayList<>();
+        damageRolls1.add(new DamageRoll(1, 8, DamageType.SLASHING));
+        attackRepository.save(new Attack("Longsword", 8, damageRolls1));
+
+        // FLAMETONGUE LONGSWORD
+        List<DamageRoll> damageRolls2 = new ArrayList<>();
+        damageRolls2.add(new DamageRoll(1, 8, DamageType.SLASHING));
+        damageRolls2.add(new DamageRoll(2, 8, DamageType.FIRE));
+        attackRepository.save(new Attack("Flametongue Longsword", 8, damageRolls2));
     }
 }
