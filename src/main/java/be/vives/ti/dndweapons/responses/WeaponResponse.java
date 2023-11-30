@@ -17,6 +17,8 @@ public class WeaponResponse {
 
     private Cost cost;
 
+    private int damageModifier;
+
     private List<DamageRoll> damageRolls;
 
     private double weight;
@@ -33,6 +35,7 @@ public class WeaponResponse {
         this.id = weapon.getId();
         this.name = weapon.getName();
         this.cost = weapon.getCost();
+        this.damageModifier = weapon.getDamageModifier();
         this.damageRolls = weapon.getDamageRolls();
         this.weight = weapon.getWeight();
         this.properties = weapon.getProperties();
@@ -63,6 +66,14 @@ public class WeaponResponse {
 
     public void setCost(Cost cost) {
         this.cost = cost;
+    }
+
+    public int getDamageModifier() {
+        return damageModifier;
+    }
+
+    public void setDamageModifier(int damageModifier) {
+        this.damageModifier = damageModifier;
     }
 
     public List<DamageRoll> getDamageRolls() {

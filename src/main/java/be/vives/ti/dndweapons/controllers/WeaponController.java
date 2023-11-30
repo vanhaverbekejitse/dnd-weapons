@@ -19,7 +19,7 @@ public class WeaponController {
     }
 
     @GetMapping
-    public Page<WeaponListResponse> findAllLectors(Pageable pageable){
+    public Page<WeaponListResponse> findAllWeapons(Pageable pageable){
         return weaponRepository.findAll(pageable).map(WeaponListResponse::new);
     }
 
@@ -29,4 +29,6 @@ public class WeaponController {
                 weaponRepository.findById(weaponId).orElseThrow(() -> new ResourceNotFoundException(weaponId.toString(), "weapon"))
         );
     }
+
+    // /{weaponId}/properties
 }

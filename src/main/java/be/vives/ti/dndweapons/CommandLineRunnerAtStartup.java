@@ -39,6 +39,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         weaponRepository.save(new Weapon(
                 "longsword",
                 cost,
+                0,
                 damageRolls,
                 3.0,
                 properties,
@@ -60,6 +61,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         weaponRepository.save(new Weapon(
                 "shortbow",
                 cost2,
+                0,
                 damageRolls2,
                 2.0,
                 properties2,
@@ -73,12 +75,12 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         // LONGSWORD
         List<DamageRoll> damageRolls1 = new ArrayList<>();
         damageRolls1.add(new DamageRoll(1, 8, DamageType.SLASHING));
-        attackRepository.save(new Attack("Longsword", 8, damageRolls1));
+        attackRepository.save(new Attack("Longsword", 0, damageRolls1));
 
         // FLAMETONGUE LONGSWORD
         List<DamageRoll> damageRolls2 = new ArrayList<>();
         damageRolls2.add(new DamageRoll(1, 8, DamageType.SLASHING));
         damageRolls2.add(new DamageRoll(2, 8, DamageType.FIRE));
-        attackRepository.save(new Attack("Flametongue Longsword", 8, damageRolls2));
+        attackRepository.save(new Attack("Flametongue Longsword", 0, damageRolls2));
     }
 }

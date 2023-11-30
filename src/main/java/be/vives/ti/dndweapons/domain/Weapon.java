@@ -18,6 +18,8 @@ public class Weapon {
     @Embedded
     private Cost cost;
 
+    private int damageModifier;
+
     @ElementCollection
     private List<DamageRoll> damageRolls;
 
@@ -42,6 +44,7 @@ public class Weapon {
     public Weapon(
             String name,
             Cost cost,
+            int damageModifier,
             List<DamageRoll> damageRolls,
             double weight,
             List<WeaponProperty> properties,
@@ -50,6 +53,7 @@ public class Weapon {
             WeaponRange range) {
         this.name = name;
         this.cost = cost;
+        this.damageModifier = damageModifier;
         this.damageRolls = damageRolls;
         this.weight = weight;
         this.properties = properties;
@@ -80,6 +84,14 @@ public class Weapon {
 
     public void setCost(Cost cost) {
         this.cost = cost;
+    }
+
+    public int getDamageModifier() {
+        return damageModifier;
+    }
+
+    public void setDamageModifier(int damageModifier) {
+        this.damageModifier = damageModifier;
     }
 
     public List<DamageRoll> getDamageRolls() {
