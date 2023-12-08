@@ -1,20 +1,32 @@
 package be.vives.ti.dndweapons.domain;
 
+import be.vives.ti.dndweapons.domain.enums.RangeType;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class WeaponRange {
+public class Range {
+    private RangeType rangeType;
+
     private Integer normalRange;
 
     private Integer longRange;
 
-    protected WeaponRange() {
+    protected Range() {
 
     }
 
-    public WeaponRange(Integer normalRange, Integer longRange) {
+    public Range(RangeType rangeType, Integer normalRange, Integer longRange) {
+        this.rangeType = rangeType;
         this.normalRange = normalRange;
         this.longRange = longRange;
+    }
+
+    public RangeType getRangeType() {
+        return rangeType;
+    }
+
+    public void setRangeType(RangeType rangeType) {
+        this.rangeType = rangeType;
     }
 
     public Integer getNormalRange() {

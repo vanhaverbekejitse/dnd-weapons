@@ -1,42 +1,38 @@
 package be.vives.ti.dndweapons.responses;
 
 import be.vives.ti.dndweapons.domain.Weapon;
-import be.vives.ti.dndweapons.domain.enums.RangeType;
+import be.vives.ti.dndweapons.domain.enums.FightingStyle;
+import be.vives.ti.dndweapons.domain.enums.Rarity;
 
 public class WeaponListResponse {
     private Long id;
 
     private String name;
 
-    private RangeType rangeType;
+    private FightingStyle fightingStyle;
+
+    private Rarity rarity;
 
     public WeaponListResponse(Weapon weapon) {
         id = weapon.getId();
         name = weapon.getName();
-        rangeType = weapon.getRangeType();
+        fightingStyle = weapon.getFightingStyle();
+        rarity = weapon.getRarity();
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public FightingStyle getFightingStyle() {
+        return fightingStyle;
     }
 
-    public RangeType getRangeType() {
-        return rangeType;
-    }
-
-    public void setRangeType(RangeType rangeType) {
-        this.rangeType = rangeType;
+    public Rarity getRarity() {
+        return rarity;
     }
 }

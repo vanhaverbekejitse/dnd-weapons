@@ -30,5 +30,5 @@ public class WeaponController {
         );
     }
 
-    // /{weaponId}/properties
+    /*@GetMapping("/{weaponId}/properties")*/
 }

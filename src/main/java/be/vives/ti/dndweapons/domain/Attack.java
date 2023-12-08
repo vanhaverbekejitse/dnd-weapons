@@ -1,46 +1,24 @@
 package be.vives.ti.dndweapons.domain;
 
+import be.vives.ti.dndweapons.domain.enums.AbilityModifierType;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-public class Attack {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    private String name;
-
+public class Attack extends WeaponAttack {
     private int damageModifier;
 
-    @ElementCollection
-    private List<DamageRoll> damageRolls;
+    private AbilityModifierType abilityModifierType;
 
     protected Attack() {
 
     }
 
-    public Attack(String name, int damageModifier, List<DamageRoll> damageRolls) {
-        this.name = name;
+    public Attack(String name, int damageModifier, AbilityModifierType abilityModifierType, List<DamageRoll> damageRolls, Range range) {
+        super(name, damageRolls, range);
         this.damageModifier = damageModifier;
-        this.damageRolls = damageRolls;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.abilityModifierType = abilityModifierType;
     }
 
     public int getDamageModifier() {
@@ -51,11 +29,11 @@ public class Attack {
         this.damageModifier = damageModifier;
     }
 
-    public List<DamageRoll> getDamageRolls() {
-        return damageRolls;
+    public AbilityModifierType getAbilityModifierType() {
+        return abilityModifierType;
     }
 
-    public void setDamageRolls(List<DamageRoll> damageRolls) {
-        this.damageRolls = damageRolls;
+    public void setAbilityModifierType(AbilityModifierType abilityModifierType) {
+        this.abilityModifierType = abilityModifierType;
     }
 }

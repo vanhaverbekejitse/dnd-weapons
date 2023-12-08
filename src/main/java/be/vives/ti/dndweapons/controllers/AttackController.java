@@ -5,7 +5,6 @@ import be.vives.ti.dndweapons.exceptions.ResourceNotFoundException;
 import be.vives.ti.dndweapons.repository.AttackRepository;
 import be.vives.ti.dndweapons.requests.AttackRequest;
 import be.vives.ti.dndweapons.responses.AttackResponse;
-import be.vives.ti.dndweapons.responses.WeaponListResponse;
 import jakarta.validation.Valid;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -38,7 +37,9 @@ public class AttackController {
         Attack newAttack = new Attack(
                 attackRequest.getName(),
                 attackRequest.getDamageModifier(),
-                attackRequest.getDamageRolls()
+                attackRequest.getAbilityModifierType(),
+                attackRequest.getDamageRolls(),
+                attackRequest.getRange()
         );
 
         Attack attack = attackRepository.save(newAttack);

@@ -1,10 +1,12 @@
 package be.vives.ti.dndweapons.domain;
 
 import be.vives.ti.dndweapons.domain.enums.ProficiencyType;
-import be.vives.ti.dndweapons.domain.enums.RangeType;
+import be.vives.ti.dndweapons.domain.enums.FightingStyle;
+import be.vives.ti.dndweapons.domain.enums.Rarity;
 import be.vives.ti.dndweapons.domain.enums.WeaponProperty;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,13 +17,16 @@ public class Weapon {
 
     private String name;
 
+    private Rarity rarity;
+
     @Embedded
     private Cost cost;
 
     private int damageModifier;
 
-    @ElementCollection
-    private List<DamageRoll> damageRolls;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "weaponattack_id")
+    private List<WeaponAttack> weaponAttacks = new ArrayList<>();
 
     private double weight;
 
@@ -29,13 +34,10 @@ public class Weapon {
     private List<WeaponProperty> properties;
 
     @Enumerated(EnumType.STRING)
-    private RangeType rangeType;
+    private FightingStyle fightingStyle;
 
     @Enumerated(EnumType.STRING)
     private ProficiencyType proficiencyType;
-
-    @Embedded
-    private WeaponRange range;
 
     protected Weapon() {
 
@@ -44,22 +46,20 @@ public class Weapon {
     public Weapon(
             String name,
             Cost cost,
+            Rarity rarity,
             int damageModifier,
-            List<DamageRoll> damageRolls,
             double weight,
             List<WeaponProperty> properties,
-            RangeType rangeType,
-            ProficiencyType proficiencyType,
-            WeaponRange range) {
+            FightingStyle fightingStyle,
+            ProficiencyType proficiencyType) {
         this.name = name;
         this.cost = cost;
+        this.rarity = rarity;
         this.damageModifier = damageModifier;
-        this.damageRolls = damageRolls;
         this.weight = weight;
         this.properties = properties;
-        this.rangeType = rangeType;
+        this.fightingStyle = fightingStyle;
         this.proficiencyType = proficiencyType;
-        this.range = range;
     }
 
     public Long getId() {
@@ -86,20 +86,20 @@ public class Weapon {
         this.cost = cost;
     }
 
+    public Rarity getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(Rarity rarity) {
+        this.rarity = rarity;
+    }
+
     public int getDamageModifier() {
         return damageModifier;
     }
 
     public void setDamageModifier(int damageModifier) {
         this.damageModifier = damageModifier;
-    }
-
-    public List<DamageRoll> getDamageRolls() {
-        return damageRolls;
-    }
-
-    public void setDamageRolls(List<DamageRoll> damageRolls) {
-        this.damageRolls = damageRolls;
     }
 
     public double getWeight() {
@@ -118,12 +118,12 @@ public class Weapon {
         this.properties = properties;
     }
 
-    public RangeType getRangeType() {
-        return rangeType;
+    public FightingStyle getFightingStyle() {
+        return fightingStyle;
     }
 
-    public void setRangeType(RangeType rangeType) {
-        this.rangeType = rangeType;
+    public void setFightingStyle(FightingStyle fightingStyle) {
+        this.fightingStyle = fightingStyle;
     }
 
     public ProficiencyType getProficiencyType() {
@@ -134,11 +134,15 @@ public class Weapon {
         this.proficiencyType = proficiencyType;
     }
 
-    public WeaponRange getRange() {
-        return range;
+    public List<WeaponAttack> getWeaponAttacks() {
+        return weaponAttacks;
     }
 
-    public void setRange(WeaponRange range) {
-        this.range = range;
+    public void setWeaponAttacks(List<WeaponAttack> weaponAttacks) {
+        this.weaponAttacks = weaponAttacks;
+    }
+
+    public void addAttack(WeaponAttack attack) {
+        this.getWeaponAttacks().add(attack);
     }
 }
