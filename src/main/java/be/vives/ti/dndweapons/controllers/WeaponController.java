@@ -4,6 +4,7 @@ import be.vives.ti.dndweapons.exceptions.ResourceNotFoundException;
 import be.vives.ti.dndweapons.repository.WeaponRepository;
 import be.vives.ti.dndweapons.responses.WeaponListResponse;
 import be.vives.ti.dndweapons.responses.WeaponResponse;
+import be.vives.ti.dndweapons.responses.WeaponWithPropertiesResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,8 @@ public class WeaponController {
         );
     }
 
-    /*@GetMapping("/{weaponId}/properties")*/
+    @GetMapping("/{weaponId}/properties")
+    public WeaponWithPropertiesResponse retrieveWeaponByIdWithProperties(@PathVariable(name = "weaponId") Long weaponId) {
+        return new WeaponWithPropertiesResponse(weaponRepository.findById(weaponId).orElseThrow(() -> new ResourceNotFoundException(weaponId.toString(), "weapon")));
+    }
 }

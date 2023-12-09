@@ -2,6 +2,7 @@ package be.vives.ti.dndweapons.responses;
 
 import be.vives.ti.dndweapons.domain.*;
 import be.vives.ti.dndweapons.domain.enums.WeaponProperty;
+import com.fasterxml.jackson.annotation.JsonGetter;
 
 import java.util.List;
 
@@ -41,8 +42,9 @@ public class WeaponResponse extends WeaponListResponse {
         return weight;
     }
 
-    public List<WeaponProperty> getProperties() {
-        return properties;
+    @JsonGetter("properties")
+    public List<String> getPropertyNames() {
+        return properties.stream().map((WeaponProperty::getName)).toList();
     }
 
     public boolean isMartialWeapon() {
