@@ -24,6 +24,11 @@ public class WeaponController {
         return weaponRepository.findAll(pageable).map(WeaponListResponse::new);
     }
 
+    @GetMapping("/search")
+    public Page<WeaponListResponse> findByNameContainingIgnoreCase(@RequestParam("query") String query, Pageable pageable){
+        return weaponRepository.findByNameContainingIgnoreCase(query, pageable).map(WeaponListResponse::new);
+    }
+
     @GetMapping("/{weaponId}")
     public WeaponResponse retrieveWeaponById(@PathVariable(name = "weaponId") Long weaponId) {
         return new WeaponResponse(
