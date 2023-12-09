@@ -3,20 +3,17 @@ package be.vives.ti.dndweapons.responses;
 import be.vives.ti.dndweapons.domain.enums.WeaponProperty;
 
 public class WeaponPropertyResponse {
-    private String name;
-
-    private String description;
+    private WeaponProperty weaponProperty;
 
     public WeaponPropertyResponse(WeaponProperty weaponProperty) {
-        this.name = weaponProperty.getName();
-        this.description = weaponProperty.getDescription();
+        this.weaponProperty = weaponProperty;
     }
 
-    public String getName() {
-        return name;
+    public WeaponProperty getWeaponProperty() {
+        return weaponProperty;
     }
 
     public String getDescription() {
-        return description;
+        return weaponProperty.getDescription();
     }
 }

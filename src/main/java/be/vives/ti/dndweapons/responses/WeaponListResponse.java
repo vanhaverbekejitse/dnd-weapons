@@ -29,13 +29,11 @@ public class WeaponListResponse {
         return name;
     }
 
-    @JsonGetter("weaponType")
-    public String getWeaponTypeName() {
-        return weaponType.getName();
+    public WeaponType getWeaponType() {
+        return weaponType;
     }
 
-    @JsonGetter("rarity")
-    public String getRarityName() {
-        return rarity.getName();
+    public Rarity getRarity() {
+        return rarity;
     }
 }

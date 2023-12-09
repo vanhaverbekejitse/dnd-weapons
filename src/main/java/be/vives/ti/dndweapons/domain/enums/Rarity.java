@@ -1,19 +1,20 @@
 package be.vives.ti.dndweapons.domain.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum Rarity {
-    COMMON("Common"),
-    UNCOMMON("Uncommon"),
-    RARE("Rare"),
-    VERY_RARE("Very rare"),
-    LEGENDARY("Legendary");
+    @JsonProperty("Common")
+    COMMON,
 
-    private final String name;
+    @JsonProperty("Uncommon")
+    UNCOMMON,
 
-    Rarity(String name) {
-        this.name = name;
-    }
+    @JsonProperty("Rare")
+    RARE,
 
-    public String getName() {
-        return name;
-    }
+    @JsonProperty("Very rare")
+    VERY_RARE,
+
+    @JsonProperty("Legendary")
+    LEGENDARY;
 }

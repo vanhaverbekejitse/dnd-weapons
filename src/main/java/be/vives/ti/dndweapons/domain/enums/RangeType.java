@@ -1,18 +1,18 @@
 package be.vives.ti.dndweapons.domain.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum RangeType {
-    RANGED("Ranged"),
-    MELEE("Melee"),
-    THROWN("Thrown"),
-    REACH("Reach");
+    @JsonProperty("Ranged")
+    RANGED,
 
-    private final String name;
+    @JsonProperty("Melee")
+    MELEE,
 
-    RangeType(String name) {
-        this.name = name;
-    }
+    @JsonProperty("Thrown")
+    THROWN,
 
-    public String getName() {
-        return name;
-    }
+    @JsonProperty("Reach")
+    REACH;
 }
+

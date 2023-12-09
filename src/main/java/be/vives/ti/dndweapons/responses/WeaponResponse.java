@@ -42,9 +42,8 @@ public class WeaponResponse extends WeaponListResponse {
         return weight;
     }
 
-    @JsonGetter("properties")
-    public List<String> getPropertyNames() {
-        return properties.stream().map((WeaponProperty::getName)).toList();
+    public List<WeaponProperty> getProperties() {
+        return properties;
     }
 
     public boolean isMartialWeapon() {

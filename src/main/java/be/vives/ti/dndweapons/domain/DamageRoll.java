@@ -39,9 +39,8 @@ public class DamageRoll {
         this.dieType = dietype;
     }
 
-    @JsonGetter("damageType")
-    public String getDamageTypeName() {
-        return damageType.getName();
+    public DamageType getDamageType() {
+        return damageType;
     }
 
     public void setDamageType(DamageType damageType) {

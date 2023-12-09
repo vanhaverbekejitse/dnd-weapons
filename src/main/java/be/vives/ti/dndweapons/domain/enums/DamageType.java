@@ -1,27 +1,44 @@
 package be.vives.ti.dndweapons.domain.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum DamageType {
-    SLASHING("Slashing"),
-    PIERCING("Piercing"),
-    BLUDGEONING("Bludgeoning"),
-    POISON("Poison"),
-    ACID("Acid"),
-    FIRE("Fire"),
-    COLD("Cold"),
-    RADIANT("Radiant"),
-    NECROTIC("Necrotic"),
-    LIGHTNING("Lightning"),
-    THUNDER("Thunder"),
-    FORCE("Force"),
-    PSYCHIC("Psychic");
+    @JsonProperty("Slashing")
+    SLASHING,
 
-    private final String name;
+    @JsonProperty("Piercing")
+    PIERCING,
 
-    DamageType(String name) {
-        this.name = name;
-    }
+    @JsonProperty("Bludgeoning")
+    BLUDGEONING,
 
-    public String getName() {
-        return name;
-    }
+    @JsonProperty("Poison")
+    POISON,
+
+    @JsonProperty("Acid")
+    ACID,
+
+    @JsonProperty("Fire")
+    FIRE,
+
+    @JsonProperty("Cold")
+    COLD,
+
+    @JsonProperty("Radiant")
+    RADIANT,
+
+    @JsonProperty("Necrotic")
+    NECROTIC,
+
+    @JsonProperty("Lightning")
+    LIGHTNING,
+
+    @JsonProperty("Thunder")
+    THUNDER,
+
+    @JsonProperty("Force")
+    FORCE,
+
+    @JsonProperty("Psychic")
+    PSYCHIC;
 }

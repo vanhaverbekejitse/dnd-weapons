@@ -34,8 +34,7 @@ public class Cost {
         this.coinType = coinType;
     }
 
-    @JsonGetter("coinType")
-    public String getCoinTypeName() {
-        return coinType.getName();
+    public CoinType getCoinType() {
+        return coinType;
     }
 }

@@ -22,9 +22,8 @@ public class Range {
         this.longRange = longRange;
     }
 
-    @JsonGetter("rangeType")
-    public String getRangeTypeName() {
-        return rangeType.getName();
+    public RangeType getRangeType() {
+        return rangeType;
     }
 
     public void setRangeType(RangeType rangeType) {

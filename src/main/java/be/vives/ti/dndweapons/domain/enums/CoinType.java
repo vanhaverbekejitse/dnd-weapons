@@ -1,19 +1,20 @@
 package be.vives.ti.dndweapons.domain.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum CoinType {
-    CP("cp"),
-    SP("sp"),
-    EP("ep"),
-    GP("cp"),
-    PP("pp");
+    @JsonProperty("cp")
+    CP,
 
-    private final String name;
+    @JsonProperty("sp")
+    SP,
 
-    CoinType(String name) {
-        this.name = name;
-    }
+    @JsonProperty("ep")
+    EP,
 
-    public String getName() {
-        return name;
-    }
+    @JsonProperty("gp")
+    GP,
+
+    @JsonProperty("pp")
+    PP;
 }

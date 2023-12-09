@@ -1,18 +1,18 @@
 package be.vives.ti.dndweapons.domain.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum AbilityModifierType {
-    STRENGTH("Strength"),
-    DEXTERITY("Dexterity"),
-    FINESSE("Finesse"),
-    SPELLCASTING("Spellcasting");
+    @JsonProperty("Strength")
+    STRENGTH,
 
-    private final String name;
+    @JsonProperty("Dexterity")
+    DEXTERITY,
 
-    AbilityModifierType(String name) {
-        this.name = name;
-    }
+    @JsonProperty("Finesse")
+    FINESSE,
 
-    public String getName() {
-        return name;
-    }
+    @JsonProperty("Spellcasting")
+    SPELLCASTING;
 }
+
