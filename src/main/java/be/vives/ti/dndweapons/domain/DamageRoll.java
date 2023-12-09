@@ -1,6 +1,7 @@
 package be.vives.ti.dndweapons.domain;
 
 import be.vives.ti.dndweapons.domain.enums.DamageType;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -38,8 +39,9 @@ public class DamageRoll {
         this.dieType = dietype;
     }
 
-    public DamageType getDamageType() {
-        return damageType;
+    @JsonGetter("damageType")
+    public String getDamageTypeName() {
+        return damageType.getName();
     }
 
     public void setDamageType(DamageType damageType) {

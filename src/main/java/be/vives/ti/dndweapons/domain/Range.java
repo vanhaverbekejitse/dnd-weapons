@@ -1,6 +1,7 @@
 package be.vives.ti.dndweapons.domain;
 
 import be.vives.ti.dndweapons.domain.enums.RangeType;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
@@ -21,8 +22,9 @@ public class Range {
         this.longRange = longRange;
     }
 
-    public RangeType getRangeType() {
-        return rangeType;
+    @JsonGetter("rangeType")
+    public String getRangeTypeName() {
+        return rangeType.getName();
     }
 
     public void setRangeType(RangeType rangeType) {

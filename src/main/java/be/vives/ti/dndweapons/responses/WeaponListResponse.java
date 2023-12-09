@@ -3,6 +3,7 @@ package be.vives.ti.dndweapons.responses;
 import be.vives.ti.dndweapons.domain.Weapon;
 import be.vives.ti.dndweapons.domain.enums.WeaponType;
 import be.vives.ti.dndweapons.domain.enums.Rarity;
+import com.fasterxml.jackson.annotation.JsonGetter;
 
 public class WeaponListResponse {
     private Long id;
@@ -28,11 +29,13 @@ public class WeaponListResponse {
         return name;
     }
 
-    public WeaponType getWeaponType() {
-        return weaponType;
+    @JsonGetter("weaponType")
+    public String getWeaponTypeName() {
+        return weaponType.getName();
     }
 
-    public Rarity getRarity() {
-        return rarity;
+    @JsonGetter("rarity")
+    public String getRarityName() {
+        return rarity.getName();
     }
 }

@@ -1,6 +1,7 @@
 package be.vives.ti.dndweapons.domain;
 
 import be.vives.ti.dndweapons.domain.enums.CoinType;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,11 +30,12 @@ public class Cost {
         this.amount = amount;
     }
 
-    public CoinType getCoinType() {
-        return coinType;
-    }
-
     public void setCoinType(CoinType coinType) {
         this.coinType = coinType;
+    }
+
+    @JsonGetter("coinType")
+    public String getCoinTypeName() {
+        return coinType.getName();
     }
 }
