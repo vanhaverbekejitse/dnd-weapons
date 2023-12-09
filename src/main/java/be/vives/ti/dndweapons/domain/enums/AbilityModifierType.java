@@ -12,7 +12,7 @@ public enum AbilityModifierType {
     @JsonProperty("Finesse")
     FINESSE,
 
-    @JsonProperty("Spellcasting")
-    SPELLCASTING;
+    @JsonProperty("Spell casting")
+    SPELL_CASTING;
 }
 
