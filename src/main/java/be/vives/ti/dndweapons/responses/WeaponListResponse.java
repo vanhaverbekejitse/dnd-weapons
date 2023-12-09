@@ -1,7 +1,7 @@
 package be.vives.ti.dndweapons.responses;
 
 import be.vives.ti.dndweapons.domain.Weapon;
-import be.vives.ti.dndweapons.domain.enums.FightingStyle;
+import be.vives.ti.dndweapons.domain.enums.WeaponType;
 import be.vives.ti.dndweapons.domain.enums.Rarity;
 
 public class WeaponListResponse {
@@ -9,14 +9,14 @@ public class WeaponListResponse {
 
     private String name;
 
-    private FightingStyle fightingStyle;
+    private WeaponType weaponType;
 
     private Rarity rarity;
 
     public WeaponListResponse(Weapon weapon) {
         id = weapon.getId();
         name = weapon.getName();
-        fightingStyle = weapon.getFightingStyle();
+        weaponType = weapon.getWeaponType();
         rarity = weapon.getRarity();
     }
 
@@ -28,8 +28,8 @@ public class WeaponListResponse {
         return name;
     }
 
-    public FightingStyle getFightingStyle() {
-        return fightingStyle;
+    public WeaponType getWeaponType() {
+        return weaponType;
     }
 
     public Rarity getRarity() {

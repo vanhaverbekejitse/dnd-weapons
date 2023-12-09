@@ -1,7 +1,6 @@
 package be.vives.ti.dndweapons.domain;
 
-import be.vives.ti.dndweapons.domain.enums.ProficiencyType;
-import be.vives.ti.dndweapons.domain.enums.FightingStyle;
+import be.vives.ti.dndweapons.domain.enums.WeaponType;
 import be.vives.ti.dndweapons.domain.enums.Rarity;
 import be.vives.ti.dndweapons.domain.enums.WeaponProperty;
 import jakarta.persistence.*;
@@ -34,10 +33,9 @@ public class Weapon {
     private List<WeaponProperty> properties;
 
     @Enumerated(EnumType.STRING)
-    private FightingStyle fightingStyle;
+    private WeaponType weaponType;
 
-    @Enumerated(EnumType.STRING)
-    private ProficiencyType proficiencyType;
+    private boolean isMartialWeapon;
 
     protected Weapon() {
 
@@ -50,16 +48,16 @@ public class Weapon {
             int damageModifier,
             double weight,
             List<WeaponProperty> properties,
-            FightingStyle fightingStyle,
-            ProficiencyType proficiencyType) {
+            WeaponType weaponType,
+            boolean isMartialWeapon) {
         this.name = name;
         this.cost = cost;
         this.rarity = rarity;
         this.damageModifier = damageModifier;
         this.weight = weight;
         this.properties = properties;
-        this.fightingStyle = fightingStyle;
-        this.proficiencyType = proficiencyType;
+        this.weaponType = weaponType;
+        this.isMartialWeapon = isMartialWeapon;
     }
 
     public Long getId() {
@@ -118,20 +116,20 @@ public class Weapon {
         this.properties = properties;
     }
 
-    public FightingStyle getFightingStyle() {
-        return fightingStyle;
+    public WeaponType getWeaponType() {
+        return weaponType;
     }
 
-    public void setFightingStyle(FightingStyle fightingStyle) {
-        this.fightingStyle = fightingStyle;
+    public void setWeaponType(WeaponType weaponType) {
+        this.weaponType = weaponType;
     }
 
-    public ProficiencyType getProficiencyType() {
-        return proficiencyType;
+    public boolean isMartialWeapon() {
+        return isMartialWeapon;
     }
 
-    public void setProficiencyType(ProficiencyType proficiencyType) {
-        this.proficiencyType = proficiencyType;
+    public void setMartialWeapon(boolean martialWeapon) {
+        isMartialWeapon = martialWeapon;
     }
 
     public List<WeaponAttack> getWeaponAttacks() {

@@ -48,8 +48,8 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
                 0,
                 3.0,
                 properties,
-                FightingStyle.MELEE,
-                ProficiencyType.MARTIAL
+                WeaponType.MELEE,
+                true
         ));
 
         List<DamageRoll> damageRolls1 = new ArrayList<>();
@@ -84,8 +84,8 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
                 0,
                 2.0,
                 properties2,
-                FightingStyle.RANGED,
-                ProficiencyType.SIMPLE
+                WeaponType.RANGED,
+                false
         ));
 
         List<DamageRoll> damageRolls = new ArrayList<>();

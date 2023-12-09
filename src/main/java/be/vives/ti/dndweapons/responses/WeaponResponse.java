@@ -1,7 +1,6 @@
 package be.vives.ti.dndweapons.responses;
 
 import be.vives.ti.dndweapons.domain.*;
-import be.vives.ti.dndweapons.domain.enums.ProficiencyType;
 import be.vives.ti.dndweapons.domain.enums.WeaponProperty;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class WeaponResponse extends WeaponListResponse {
 
     private List<WeaponProperty> properties;
 
-    private ProficiencyType proficiencyType;
+    private boolean isMartialWeapon;
 
     public WeaponResponse(Weapon weapon) {
         super(weapon);
@@ -26,7 +25,7 @@ public class WeaponResponse extends WeaponListResponse {
         this.damageModifier = weapon.getDamageModifier();
         this.weight = weapon.getWeight();
         this.properties = weapon.getProperties();
-        this.proficiencyType = weapon.getProficiencyType();
+        this.isMartialWeapon = weapon.isMartialWeapon();
         this.weaponAttacks = weapon.getWeaponAttacks();
     }
 
@@ -46,8 +45,8 @@ public class WeaponResponse extends WeaponListResponse {
         return properties;
     }
 
-    public ProficiencyType getProficiencyType() {
-        return proficiencyType;
+    public boolean isMartialWeapon() {
+        return isMartialWeapon;
     }
 
     public List<WeaponAttack> getWeaponAttacks() {
