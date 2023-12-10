@@ -36,7 +36,7 @@ public class Weapon {
     @Enumerated(EnumType.STRING)
     private WeaponType weaponType;
 
-    private boolean isMartialWeapon;
+    private boolean isMartial;
 
     protected Weapon() {
 
@@ -50,7 +50,7 @@ public class Weapon {
             double weight,
             List<WeaponProperty> properties,
             WeaponType weaponType,
-            boolean isMartialWeapon) {
+            boolean isMartial) {
         this.name = name;
         this.cost = cost;
         this.rarity = rarity;
@@ -58,7 +58,7 @@ public class Weapon {
         this.weight = weight;
         this.properties = properties;
         this.weaponType = weaponType;
-        this.isMartialWeapon = isMartialWeapon;
+        this.isMartial = isMartial;
     }
 
     public Long getId() {
@@ -125,12 +125,12 @@ public class Weapon {
         this.weaponType = weaponType;
     }
 
-    public boolean isMartialWeapon() {
-        return isMartialWeapon;
+    public boolean isMartial() {
+        return isMartial;
     }
 
-    public void setMartialWeapon(boolean martialWeapon) {
-        isMartialWeapon = martialWeapon;
+    public void setMartial(boolean martial) {
+        isMartial = martial;
     }
 
     public List<WeaponAttack> getWeaponAttacks() {

@@ -18,7 +18,7 @@ public class WeaponResponse extends WeaponListResponse {
 
     private List<WeaponProperty> properties;
 
-    private boolean isMartialWeapon;
+    private boolean isMartial;
 
     public WeaponResponse(Weapon weapon) {
         super(weapon);
@@ -26,7 +26,7 @@ public class WeaponResponse extends WeaponListResponse {
         this.damageModifier = weapon.getDamageModifier();
         this.weight = weapon.getWeight();
         this.properties = weapon.getProperties();
-        this.isMartialWeapon = weapon.isMartialWeapon();
+        this.isMartial = weapon.isMartial();
         this.weaponAttacks = weapon.getWeaponAttacks();
     }
 
@@ -46,10 +46,12 @@ public class WeaponResponse extends WeaponListResponse {
         return properties;
     }
 
-    public boolean isMartialWeapon() {
-        return isMartialWeapon;
+    @JsonGetter("isMartial")
+    public boolean isMartial() {
+        return isMartial;
     }
 
+    @JsonGetter("attacks")
     public List<WeaponAttack> getWeaponAttacks() {
         return weaponAttacks;
     }
