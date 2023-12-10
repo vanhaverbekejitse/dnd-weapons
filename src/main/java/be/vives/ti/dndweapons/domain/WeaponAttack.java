@@ -16,13 +16,13 @@ public class WeaponAttack {
     private List<DamageRoll> damageRolls;
 
     @Embedded
-    private Range range;
+    private AttackRange range;
 
     protected WeaponAttack() {
 
     }
 
-    public WeaponAttack(String name, List<DamageRoll> damageRolls, Range range) {
+    public WeaponAttack(String name, List<DamageRoll> damageRolls, AttackRange range) {
         this.name = name;
         this.damageRolls = damageRolls;
         this.range = range;
@@ -52,11 +52,11 @@ public class WeaponAttack {
         this.damageRolls = damageRolls;
     }
 
-    public Range getRange() {
+    public AttackRange getRange() {
         return range;
     }
 
-    public void setRange(Range range) {
+    public void setRange(AttackRange range) {
         this.range = range;
     }
 }

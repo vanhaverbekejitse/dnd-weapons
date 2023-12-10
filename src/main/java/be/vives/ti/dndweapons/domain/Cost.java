@@ -1,7 +1,6 @@
 package be.vives.ti.dndweapons.domain;
 
 import be.vives.ti.dndweapons.domain.enums.CoinType;
-import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

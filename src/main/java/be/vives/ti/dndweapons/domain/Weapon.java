@@ -16,6 +16,7 @@ public class Weapon {
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
     private Rarity rarity;
 
     @Embedded

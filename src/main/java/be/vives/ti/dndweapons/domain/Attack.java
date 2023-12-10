@@ -17,17 +17,18 @@ public class Attack {
     private List<DamageRoll> damageRolls;
 
     @Embedded
-    private Range range;
+    private AttackRange range;
 
     private int damageModifier;
 
+    @Enumerated(EnumType.STRING)
     private AbilityModifierType abilityModifierType;
 
     protected Attack() {
 
     }
 
-    public Attack(String name, int damageModifier, AbilityModifierType abilityModifierType, List<DamageRoll> damageRolls, Range range) {
+    public Attack(String name, int damageModifier, AbilityModifierType abilityModifierType, List<DamageRoll> damageRolls, AttackRange range) {
         this.name = name;
         this.damageRolls = damageRolls;
         this.range = range;
@@ -75,11 +76,11 @@ public class Attack {
         this.damageRolls = damageRolls;
     }
 
-    public Range getRange() {
+    public AttackRange getRange() {
         return range;
     }
 
-    public void setRange(Range range) {
+    public void setRange(AttackRange range) {
         this.range = range;
     }
 }

@@ -54,12 +54,12 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
 
         List<DamageRoll> damageRolls1 = new ArrayList<>();
         damageRolls1.add(new DamageRoll(1, 8, DamageType.SLASHING));
-        Range range1 = new Range(RangeType.MELEE, null, null);
+        AttackRange range1 = new AttackRange(RangeType.MELEE, null, null);
         weaponAttackRepository.save(new WeaponAttack("Longsword", damageRolls1, range1));
 
         List<DamageRoll> damageRolls2 = new ArrayList<>();
         damageRolls2.add(new DamageRoll(1, 10, DamageType.SLASHING));
-        Range range2 = new Range(RangeType.MELEE, null, null);
+        AttackRange range2 = new AttackRange(RangeType.MELEE, null, null);
         weaponAttackRepository.save(new WeaponAttack("Longsword (two-handed)", damageRolls2, range2));
 
         Optional<WeaponAttack> attack1 = weaponAttackRepository.findByName("Longsword");
@@ -90,7 +90,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
 
         List<DamageRoll> damageRolls = new ArrayList<>();
         damageRolls.add(new DamageRoll(1, 6, DamageType.PIERCING));
-        Range range = new Range(RangeType.RANGED, 80, 320);
+        AttackRange range = new AttackRange(RangeType.RANGED, 80, 320);
         weaponAttackRepository.save(new WeaponAttack("Shortbow", damageRolls, range));
 
         Optional<WeaponAttack> attack = weaponAttackRepository.findByName("Shortbow");
@@ -102,7 +102,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
     private void addAttacks() {
         // LONGSWORD
         List<DamageRoll> damageRolls1 = new ArrayList<>();
-        Range range1 = new Range(RangeType.MELEE, null, null);
+        AttackRange range1 = new AttackRange(RangeType.MELEE, null, null);
         damageRolls1.add(new DamageRoll(1, 8, DamageType.SLASHING));
         attackRepository.save(new Attack("Longsword", 0, AbilityModifierType.STRENGTH , damageRolls1, range1));
 
@@ -110,7 +110,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         List<DamageRoll> damageRolls2 = new ArrayList<>();
         damageRolls2.add(new DamageRoll(1, 8, DamageType.SLASHING));
         damageRolls2.add(new DamageRoll(2, 8, DamageType.FIRE));
-        Range range2 = new Range(RangeType.MELEE, null, null);
+        AttackRange range2 = new AttackRange(RangeType.MELEE, null, null);
         attackRepository.save(new Attack("Flametongue Longsword", 0, AbilityModifierType.DEXTERITY, damageRolls2, range2));
     }
 }

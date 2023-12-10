@@ -1,15 +1,19 @@
 package be.vives.ti.dndweapons.domain;
 
 import be.vives.ti.dndweapons.domain.enums.DamageType;
-import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 @Embeddable
 public class DamageRoll {
+    @Min(1)
     private int amount;
+    @Min(1)
     private int dieType;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private DamageType damageType;
 
