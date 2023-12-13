@@ -1,6 +1,6 @@
 package be.vives.ti.dndweapons.domain;
 
-import be.vives.ti.dndweapons.domain.enums.AbilityModifierType;
+import be.vives.ti.dndweapons.domain.enums.AbilityType;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -22,18 +22,18 @@ public class Attack {
     private int damageModifier;
 
     @Enumerated(EnumType.STRING)
-    private AbilityModifierType abilityModifierType;
+    private AbilityType abilityType;
 
     protected Attack() {
 
     }
 
-    public Attack(String name, int damageModifier, AbilityModifierType abilityModifierType, List<DamageRoll> damageRolls, AttackRange range) {
+    public Attack(String name, int damageModifier, AbilityType abilityType, List<DamageRoll> damageRolls, AttackRange range) {
         this.name = name;
         this.damageRolls = damageRolls;
         this.range = range;
         this.damageModifier = damageModifier;
-        this.abilityModifierType = abilityModifierType;
+        this.abilityType = abilityType;
     }
 
     public int getDamageModifier() {
@@ -44,12 +44,12 @@ public class Attack {
         this.damageModifier = damageModifier;
     }
 
-    public AbilityModifierType getAbilityModifierType() {
-        return abilityModifierType;
+    public AbilityType getAbilityType() {
+        return abilityType;
     }
 
-    public void setAbilityModifierType(AbilityModifierType abilityModifierType) {
-        this.abilityModifierType = abilityModifierType;
+    public void setAbilityType(AbilityType abilityType) {
+        this.abilityType = abilityType;
     }
 
     public Long getId() {

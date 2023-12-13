@@ -2,7 +2,7 @@ package be.vives.ti.dndweapons.requests;
 
 import be.vives.ti.dndweapons.domain.DamageRoll;
 import be.vives.ti.dndweapons.domain.AttackRange;
-import be.vives.ti.dndweapons.domain.enums.AbilityModifierType;
+import be.vives.ti.dndweapons.domain.enums.AbilityType;
 import be.vives.ti.dndweapons.validation.RangeContraint;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -13,18 +13,19 @@ import java.util.List;
 
 public class AttackRequest {
     @NotBlank
-    @NotEmpty
     private String name;
 
     private int damageModifier;
 
     @NotNull
-    private AbilityModifierType abilityModifierType;
+    private AbilityType abilityType;
 
+    @NotNull
     @Valid
     @NotEmpty
     private List<DamageRoll> damageRolls;
 
+    @NotNull
     @Valid
     @RangeContraint
     private AttackRange range;
@@ -61,11 +62,11 @@ public class AttackRequest {
         this.range = range;
     }
 
-    public AbilityModifierType getAbilityModifierType() {
-        return abilityModifierType;
+    public AbilityType getAbilityModifierType() {
+        return abilityType;
     }
 
-    public void setAbilityModifierType(AbilityModifierType abilityModifierType) {
-        this.abilityModifierType = abilityModifierType;
+    public void setAbilityModifierType(AbilityType abilityType) {
+        this.abilityType = abilityType;
     }
 }

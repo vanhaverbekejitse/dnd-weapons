@@ -3,6 +3,7 @@ package be.vives.ti.dndweapons.responses;
 import be.vives.ti.dndweapons.domain.Attack;
 import be.vives.ti.dndweapons.domain.DamageRoll;
 import be.vives.ti.dndweapons.domain.AttackRange;
+import be.vives.ti.dndweapons.domain.enums.AbilityType;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class AttackResponse {
 
     private int damageModifier;
 
+    private AbilityType abilityType;
+
     private List<DamageRoll> damageRolls;
 
     private AttackRange range;
@@ -21,6 +24,7 @@ public class AttackResponse {
         this.id = attack.getId();
         this.name = attack.getName();
         this.damageModifier = attack.getDamageModifier();
+        this.abilityType = attack.getAbilityType();
         this.damageRolls = attack.getDamageRolls();
         this.range = attack.getRange();
     }
@@ -43,5 +47,9 @@ public class AttackResponse {
 
     public AttackRange getRange() {
         return range;
+    }
+
+    public AbilityType getAbilityType() {
+        return abilityType;
     }
 }

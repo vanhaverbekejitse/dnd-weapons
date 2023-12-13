@@ -15,6 +15,9 @@ public class RangeConstraintValidator implements
 
     @Override
     public boolean isValid(AttackRange range, ConstraintValidatorContext constraintValidatorContext) {
+        if (range == null) {
+            return false;
+        }
         Integer normalRange = range.getNormalRange();
         Integer longRange = range.getLongRange();
         if (range.getRangeType() == RangeType.MELEE || range.getRangeType() == RangeType.REACH) {

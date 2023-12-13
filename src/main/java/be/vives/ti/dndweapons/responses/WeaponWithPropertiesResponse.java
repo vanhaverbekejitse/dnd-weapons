@@ -14,7 +14,7 @@ public class WeaponWithPropertiesResponse extends WeaponListResponse {
         this.properties = weapon.getProperties();
     }
 
-    @JsonGetter("weaponProperties")
+    @JsonGetter("properties")
     public List<WeaponPropertyResponse> getWeaponPropertyResponses() {
         return properties.stream().map(WeaponPropertyResponse::new).toList();
     }

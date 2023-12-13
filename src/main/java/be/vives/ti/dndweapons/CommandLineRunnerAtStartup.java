@@ -34,21 +34,21 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
     private void addWeapons() {
         addLongSword();
         addShortBow();
+        addDart();
     }
 
     private void addLongSword() {
-        Cost cost = new Cost(15, CoinType.GP);
         List<WeaponProperty> properties = new ArrayList<>();
         properties.add(WeaponProperty.VERSATILE);
 
         Weapon weapon = weaponRepository.save(new Weapon(
                 "Longsword",
-                cost,
+                new Cost(15, CoinType.GP),
                 Rarity.COMMON,
                 0,
                 3.0,
                 properties,
-                WeaponType.MELEE,
+                WeaponType.MELEE_WEAPON,
                 true
         ));
 
@@ -72,19 +72,18 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
     }
 
     private void addShortBow() {
-        Cost cost = new Cost(25, CoinType.GP);
-        List<WeaponProperty> properties2 = new ArrayList<>();
-        properties2.add(WeaponProperty.AMMUNITION);
-        properties2.add(WeaponProperty.TWO_HANDED);
+        List<WeaponProperty> properties = new ArrayList<>();
+        properties.add(WeaponProperty.AMMUNITION);
+        properties.add(WeaponProperty.TWO_HANDED);
 
         Weapon weapon = weaponRepository.save(new Weapon(
                 "Shortbow",
-                cost,
+                new Cost(25, CoinType.GP),
                 Rarity.COMMON,
                 0,
                 2.0,
-                properties2,
-                WeaponType.RANGED,
+                properties,
+                WeaponType.RANGED_WEAPON,
                 false
         ));
 
@@ -99,18 +98,45 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         weaponRepository.save(weapon);
     }
 
+    private void addDart() {
+        List<WeaponProperty> properties = new ArrayList<>();
+        properties.add(WeaponProperty.FINESSE);
+        properties.add(WeaponProperty.THROWN);
+
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Dart",
+                new Cost(5, CoinType.CP),
+                Rarity.COMMON,
+                0,
+                2.0,
+                properties,
+                WeaponType.RANGED_WEAPON,
+                false
+        ));
+
+        List<DamageRoll> damageRolls = new ArrayList<>();
+        damageRolls.add(new DamageRoll(1, 4, DamageType.PIERCING));
+        AttackRange range = new AttackRange(RangeType.THROWN, 20, 60);
+        weaponAttackRepository.save(new WeaponAttack("Dart", damageRolls, range));
+
+        Optional<WeaponAttack> attack = weaponAttackRepository.findByName("Dart");
+        weapon.addAttack(attack.orElseThrow());
+
+        weaponRepository.save(weapon);
+    }
+
     private void addAttacks() {
         // LONGSWORD
         List<DamageRoll> damageRolls1 = new ArrayList<>();
         AttackRange range1 = new AttackRange(RangeType.MELEE, null, null);
         damageRolls1.add(new DamageRoll(1, 8, DamageType.SLASHING));
-        attackRepository.save(new Attack("Longsword", 0, AbilityModifierType.STRENGTH , damageRolls1, range1));
+        attackRepository.save(new Attack("Longsword", 0, AbilityType.STRENGTH , damageRolls1, range1));
 
         // FLAMETONGUE LONGSWORD
         List<DamageRoll> damageRolls2 = new ArrayList<>();
         damageRolls2.add(new DamageRoll(1, 8, DamageType.SLASHING));
         damageRolls2.add(new DamageRoll(2, 8, DamageType.FIRE));
         AttackRange range2 = new AttackRange(RangeType.MELEE, null, null);
-        attackRepository.save(new Attack("Flametongue Longsword", 0, AbilityModifierType.DEXTERITY, damageRolls2, range2));
+        attackRepository.save(new Attack("Flametongue Longsword", 0, AbilityType.DEXTERITY, damageRolls2, range2));
     }
 }
