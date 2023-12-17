@@ -37,7 +37,7 @@ public class AttackController {
         Attack newAttack = new Attack(
                 attackRequest.getName(),
                 attackRequest.getDamageModifier(),
-                attackRequest.getAbilityModifierType(),
+                attackRequest.getAbilityType(),
                 attackRequest.getDamageRolls(),
                 attackRequest.getRange()
         );
@@ -60,7 +60,9 @@ public class AttackController {
 
         attack.setName(attackRequest.getName());
         attack.setDamageModifier(attackRequest.getDamageModifier());
+        attack.setAbilityType(attackRequest.getAbilityType());
         attack.setDamageRolls(attackRequest.getDamageRolls());
+        attack.setRange(attackRequest.getRange());
 
         return new AttackResponse(attackRepository.save(attack));
     }
