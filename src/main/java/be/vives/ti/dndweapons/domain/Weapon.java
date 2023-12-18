@@ -24,8 +24,8 @@ public class Weapon {
 
     private int damageModifier;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "weaponattack_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "weaponAttackId")
     private List<WeaponAttack> weaponAttacks = new ArrayList<>();
 
     private double weight;

@@ -9,12 +9,15 @@ import be.vives.ti.dndweapons.repository.WeaponRepository;
 import be.vives.ti.dndweapons.requests.AttackRequest;
 import be.vives.ti.dndweapons.requests.WeaponAttackRequest;
 import be.vives.ti.dndweapons.requests.WeaponRequest;
+import be.vives.ti.dndweapons.responses.AttackResponse;
 import be.vives.ti.dndweapons.responses.WeaponListResponse;
 import be.vives.ti.dndweapons.responses.WeaponResponse;
 import be.vives.ti.dndweapons.responses.WeaponWithPropertiesResponse;
 import jakarta.validation.Valid;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -79,8 +82,34 @@ public class WeaponController {
         return ResponseEntity.created(location).build();
     }
 
-    //@PutMapping("/{weaponId}")
-    //@DeleteMapping("/{weaponId}")
+    @PutMapping("/{weaponId}")
+    public WeaponResponse putAttack(@PathVariable(name = "weaponId") Long weaponId,
+                                    @RequestBody @Valid WeaponRequest weaponRequest) {
+        Weapon weapon = weaponRepository.findById(Long.parseLong(weaponId.toString())).orElseThrow(
+                () -> new ResourceNotFoundException(weaponId.toString(), "weapon")
+        );
+
+        weapon.setName(weaponRequest.getName());
+        weapon.setCost(weaponRequest.getCost());
+        weapon.setRarity(weaponRequest.getRarity());
+        weapon.setDamageModifier(weaponRequest.getDamageModifier());
+        weapon.setWeight(weaponRequest.getWeight());
+        weapon.setProperties(weaponRequest.getProperties());
+        weapon.setWeaponType(weaponRequest.getWeaponType());
+        weapon.setMartial(weaponRequest.isMartial());
+
+        return new WeaponResponse(weaponRepository.save(weapon));
+    }
+
+    @DeleteMapping("/{weaponId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteWeapon(@PathVariable(name = "weaponId") Long weaponId) {
+        try {
+            weaponRepository.deleteById(weaponId);
+        } catch (EmptyResultDataAccessException e) {
+            // als het niet bestaat dan hoefde het niet verwijderd te worden
+        }
+    }
 
     @PostMapping("/{weaponId}/weapon-attacks")
     @ResponseStatus(HttpStatus.CREATED)
@@ -107,5 +136,13 @@ public class WeaponController {
         return ResponseEntity.created(location).build();
     }
 
-    //@DeleteMapping("/{weaponId}/attacks/{attackId}")
+    @DeleteMapping("/{weaponId}/weapon-attacks/{weaponAttackId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAttackofWeapon(@PathVariable(name = "weaponAttackId") Long weaponAttackId) {
+        try {
+            weaponAttackRepository.deleteById(weaponAttackId);
+        } catch (EmptyResultDataAccessException e) {
+            // als het niet bestaat dan hoefde het niet verwijderd te worden
+        }
+    }
 }

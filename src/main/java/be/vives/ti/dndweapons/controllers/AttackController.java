@@ -69,11 +69,7 @@ public class AttackController {
 
     @DeleteMapping("/{attackId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCourseOfLector(@PathVariable(name = "attackId") Long attackId) {
-        Attack attack = attackRepository.findById(attackId).orElseThrow(
-                () -> new ResourceNotFoundException(attackId.toString(), "attack")
-        );
-
+    public void deleteAttack(@PathVariable(name = "attackId") Long attackId) {
         try {
             attackRepository.deleteById(attackId);
         } catch (EmptyResultDataAccessException e) {
