@@ -138,7 +138,7 @@ public class WeaponController {
 
     @DeleteMapping("/{weaponId}/weapon-attacks/{weaponAttackId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAttackofWeapon(@PathVariable(name = "weaponAttackId") Long weaponAttackId) {
+    public void deleteAttackofWeapon(@PathVariable(name = "weaponAttackId") Long weaponAttackId, @PathVariable String weaponId) {
         try {
             weaponAttackRepository.deleteById(weaponAttackId);
         } catch (EmptyResultDataAccessException e) {

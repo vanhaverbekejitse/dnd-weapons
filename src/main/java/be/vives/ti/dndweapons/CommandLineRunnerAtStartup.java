@@ -55,18 +55,15 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         List<DamageRoll> damageRolls1 = new ArrayList<>();
         damageRolls1.add(new DamageRoll(1, 8, DamageType.SLASHING));
         AttackRange range1 = new AttackRange(RangeType.MELEE, null, null);
-        weaponAttackRepository.save(new WeaponAttack("Longsword", damageRolls1, range1));
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack("Longsword", damageRolls1, range1));
 
         List<DamageRoll> damageRolls2 = new ArrayList<>();
         damageRolls2.add(new DamageRoll(1, 10, DamageType.SLASHING));
         AttackRange range2 = new AttackRange(RangeType.MELEE, null, null);
-        weaponAttackRepository.save(new WeaponAttack("Longsword (two-handed)", damageRolls2, range2));
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack("Longsword (two-handed)", damageRolls2, range2));
 
-        Optional<WeaponAttack> attack1 = weaponAttackRepository.findByName("Longsword");
-        Optional<WeaponAttack> attack2 = weaponAttackRepository.findByName("Longsword (two-handed)");
-
-        weapon.addAttack(attack1.orElseThrow());
-        weapon.addAttack(attack2.orElseThrow());
+        weapon.addAttack(attack1);
+        weapon.addAttack(attack2);
 
         weaponRepository.save(weapon);
     }
@@ -90,10 +87,9 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         List<DamageRoll> damageRolls = new ArrayList<>();
         damageRolls.add(new DamageRoll(1, 6, DamageType.PIERCING));
         AttackRange range = new AttackRange(RangeType.RANGED, 80, 320);
-        weaponAttackRepository.save(new WeaponAttack("Shortbow", damageRolls, range));
+        WeaponAttack attack = weaponAttackRepository.save(new WeaponAttack("Shortbow", damageRolls, range));
 
-        Optional<WeaponAttack> attack = weaponAttackRepository.findByName("Shortbow");
-        weapon.addAttack(attack.orElseThrow());
+        weapon.addAttack(attack);
 
         weaponRepository.save(weapon);
     }
@@ -117,10 +113,8 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         List<DamageRoll> damageRolls = new ArrayList<>();
         damageRolls.add(new DamageRoll(1, 4, DamageType.PIERCING));
         AttackRange range = new AttackRange(RangeType.THROWN, 20, 60);
-        weaponAttackRepository.save(new WeaponAttack("Dart", damageRolls, range));
-
-        Optional<WeaponAttack> attack = weaponAttackRepository.findByName("Dart");
-        weapon.addAttack(attack.orElseThrow());
+        WeaponAttack attack = weaponAttackRepository.save(new WeaponAttack("Dart", damageRolls, range));
+        weapon.addAttack(attack);
 
         weaponRepository.save(weapon);
     }
