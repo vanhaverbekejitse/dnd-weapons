@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface WeaponRepository extends JpaRepository<Weapon, Long> {
-    Page<Weapon> findByNameContainingIgnoreCase(String query, Pageable pageable);
+    List<Weapon> findByNameContainingIgnoreCase(String query);
 }

@@ -1,29 +1,24 @@
 package be.vives.ti.dndweapons.controllers;
 
-import be.vives.ti.dndweapons.domain.Attack;
 import be.vives.ti.dndweapons.domain.Weapon;
 import be.vives.ti.dndweapons.domain.WeaponAttack;
 import be.vives.ti.dndweapons.exceptions.ResourceNotFoundException;
 import be.vives.ti.dndweapons.repository.WeaponAttackRepository;
 import be.vives.ti.dndweapons.repository.WeaponRepository;
-import be.vives.ti.dndweapons.requests.AttackRequest;
 import be.vives.ti.dndweapons.requests.WeaponAttackRequest;
 import be.vives.ti.dndweapons.requests.WeaponRequest;
-import be.vives.ti.dndweapons.responses.AttackResponse;
 import be.vives.ti.dndweapons.responses.WeaponListResponse;
 import be.vives.ti.dndweapons.responses.WeaponResponse;
 import be.vives.ti.dndweapons.responses.WeaponWithPropertiesResponse;
 import jakarta.validation.Valid;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/weapons")
@@ -38,13 +33,13 @@ public class WeaponController {
     }
 
     @GetMapping
-    public Page<WeaponListResponse> findAllWeapons(Pageable pageable){
-        return weaponRepository.findAll(pageable).map(WeaponListResponse::new);
+    public List<WeaponListResponse> findAllWeapons(){
+        return weaponRepository.findAll().stream().map(WeaponListResponse::new).toList();
     }
 
     @GetMapping("/search")
-    public Page<WeaponListResponse> findByNameContainingIgnoreCase(@RequestParam("query") String query, Pageable pageable){
-        return weaponRepository.findByNameContainingIgnoreCase(query, pageable).map(WeaponListResponse::new);
+    public List<WeaponListResponse> findByNameContainingIgnoreCase(@RequestParam("query") String query) {
+        return weaponRepository.findByNameContainingIgnoreCase(query).stream().map(WeaponListResponse::new).toList();
     }
 
     @GetMapping("/{weaponId}")
@@ -139,9 +134,9 @@ public class WeaponController {
         return ResponseEntity.created(location).build();
     }
 
-    @DeleteMapping("/{weaponId}/weapon-attacks/{weaponAttackId}")
+    @DeleteMapping("/weapon-attacks/{weaponAttackId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAttackOfWeapon(@PathVariable(name = "weaponAttackId") Long weaponAttackId, @PathVariable String weaponId) {
+    public void deleteAttackOfWeapon(@PathVariable(name = "weaponAttackId") Long weaponAttackId) {
         try {
             weaponAttackRepository.deleteById(weaponAttackId);
         } catch (EmptyResultDataAccessException e) {

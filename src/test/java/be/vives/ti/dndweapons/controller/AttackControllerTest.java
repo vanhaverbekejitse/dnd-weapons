@@ -4,12 +4,10 @@ import be.vives.ti.dndweapons.controllers.AttackController;
 import be.vives.ti.dndweapons.domain.Attack;
 import be.vives.ti.dndweapons.domain.AttackRange;
 import be.vives.ti.dndweapons.domain.DamageRoll;
-import be.vives.ti.dndweapons.domain.TestDomain;
 import be.vives.ti.dndweapons.domain.enums.AbilityType;
 import be.vives.ti.dndweapons.domain.enums.DamageType;
 import be.vives.ti.dndweapons.domain.enums.RangeType;
 import be.vives.ti.dndweapons.repository.AttackRepository;
-import be.vives.ti.dndweapons.repository.TestRepository;
 import be.vives.ti.dndweapons.repository.WeaponAttackRepository;
 import be.vives.ti.dndweapons.repository.WeaponRepository;
 import be.vives.ti.dndweapons.requests.AttackRequest;
@@ -19,9 +17,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -48,9 +43,6 @@ public class AttackControllerTest {
     private WeaponAttackRepository weaponAttackRepository;
     @MockBean
     private WeaponRepository weaponRepository;
-    //VERWIJDEREN
-    @MockBean
-    private TestRepository testRepository;
 
     @Autowired
     private MockMvc mvc;
@@ -88,50 +80,20 @@ public class AttackControllerTest {
         System.setProperty("logging.level.org.springframework.web", "DEBUG");
     }
 
-    @Test
-    void findAllAttacks() throws Exception {
-//        Page page = new PageImpl(attacks);
-//        PageRequest of = PageRequest.of(0, 20);
-//        when(attackRepository.findAll(of)).thenReturn(page);
-//
-//        mvc.perform(get(baseUrl))
-//                .andDo(print())
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andDo(MockMvcResultHandlers.print())
-//                .andExpect(jsonPath("$.content", hasSize(3)))
-//                .andExpect(jsonPath("$.content[0].name", equalTo("Longsword")))
-//                .andExpect(jsonPath("$.content[1].name", equalTo("Shortbow")))
-//                .andExpect(jsonPath("$.content[2].name", equalTo("Longsword (two-handed)")));
-    }
-
     // VERWIJDEREN
     @Test
-    void findAllAttacksTest() throws Exception {
+    void findAllAttacks() throws Exception {
         when(attackRepository.findAll()).thenReturn(attacks);
 
-        mvc.perform(get(baseUrl + "/test"))
+        mvc.perform(get(baseUrl))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-    }
-
-    //VERWIJDEREN
-    @Test
-    void findAllTests() throws Exception {
-//        ArrayList<TestDomain> tests = new ArrayList<>();
-//        tests.add(new TestDomain("TEST 1"));
-//        tests.add(new TestDomain("TEST 2"));
-//        Page page = new PageImpl(tests);
-//        PageRequest of = PageRequest.of(0, 20);
-//        when(testRepository.findAll(of)).thenReturn(page);
-//
-//        mvc.perform(get(baseUrl+"/pageTest"))
-//                .andDo(print())
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andDo(MockMvcResultHandlers.print());
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[0].name", equalTo("Longsword")))
+                .andExpect(jsonPath("$[1].name", equalTo("Shortbow")))
+                .andExpect(jsonPath("$[2].name", equalTo("Longsword (two-handed)")));
     }
 
     @Test

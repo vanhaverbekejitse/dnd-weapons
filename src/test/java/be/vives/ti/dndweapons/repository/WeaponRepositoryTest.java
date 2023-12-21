@@ -1,14 +1,14 @@
 package be.vives.ti.dndweapons.repository;
 
-import be.vives.ti.dndweapons.domain.*;
-import be.vives.ti.dndweapons.domain.enums.*;
+import be.vives.ti.dndweapons.domain.Cost;
+import be.vives.ti.dndweapons.domain.Weapon;
+import be.vives.ti.dndweapons.domain.enums.CoinType;
+import be.vives.ti.dndweapons.domain.enums.Rarity;
+import be.vives.ti.dndweapons.domain.enums.WeaponProperty;
+import be.vives.ti.dndweapons.domain.enums.WeaponType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,17 +128,14 @@ class WeaponRepositoryTest {
                 false
         ));
 
-        Page<Weapon> containsLong =
-                weaponRepository.findByNameContainingIgnoreCase("Long", PageRequest.of(0, 20));
-        assertThat(containsLong.getTotalElements()).isEqualTo(1);
-        assertThat(containsLong.getContent().get(0).getName()).isEqualTo("Longsword");
+        List<Weapon> containsLong = weaponRepository.findByNameContainingIgnoreCase("Long");
+        assertThat(containsLong.size()).isEqualTo(1);
+        assertThat(containsLong.get(0).getName()).isEqualTo("Longsword");
 
-        Page<Weapon> containsOr =
-                weaponRepository.findByNameContainingIgnoreCase("Or", PageRequest.of(0, 20));
-        assertThat(containsOr.getTotalElements()).isEqualTo(2);
+        List<Weapon> containsOr = weaponRepository.findByNameContainingIgnoreCase("Or");
+        assertThat(containsOr.size()).isEqualTo(2);
 
-        Page<Weapon> containsQ =
-                weaponRepository.findByNameContainingIgnoreCase("Q", PageRequest.of(0, 20));
-        assertThat(containsQ.getTotalElements()).isEqualTo(0);
+        List<Weapon> containsQ = weaponRepository.findByNameContainingIgnoreCase("Q");
+        assertThat(containsQ.size()).isEqualTo(0);
     }
 }
