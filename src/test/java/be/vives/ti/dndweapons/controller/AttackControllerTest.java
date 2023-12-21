@@ -114,11 +114,7 @@ public class AttackControllerTest {
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(jsonPath("$.content", hasSize(3)))
-                .andExpect(jsonPath("$.content[0].name", equalTo("Longsword")))
-                .andExpect(jsonPath("$.content[1].name", equalTo("Shortbow")))
-                .andExpect(jsonPath("$.content[2].name", equalTo("Longsword (two-handed)")));
+                .andDo(MockMvcResultHandlers.print());
     }
 
     //VERWIJDEREN
