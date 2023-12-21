@@ -14,7 +14,6 @@ public class DamageRoll {
     @Min(1)
     private int dieType;
     @NotNull
-    @Enumerated(EnumType.STRING)
     private DamageType damageType;
 
     public DamageRoll(int amount, int dieType, DamageType damageType) {
@@ -39,8 +38,8 @@ public class DamageRoll {
         return dieType;
     }
 
-    public void setDieType(int dietype) {
-        this.dieType = dietype;
+    public void setDieType(int dieType) {
+        this.dieType = dieType;
     }
 
     public DamageType getDamageType() {

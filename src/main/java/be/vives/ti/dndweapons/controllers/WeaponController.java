@@ -104,6 +104,8 @@ public class WeaponController {
     @DeleteMapping("/{weaponId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteWeapon(@PathVariable(name = "weaponId") Long weaponId) {
+        weaponRepository.findById(weaponId).orElseThrow(() -> new ResourceNotFoundException(weaponId.toString(), "weapon"));
+
         try {
             weaponRepository.deleteById(weaponId);
         } catch (EmptyResultDataAccessException e) {
@@ -128,17 +130,18 @@ public class WeaponController {
         weapon.addAttack(weaponAttack);
         weaponRepository.save(weapon);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
+        URI location = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/weapons/{id}/weapon-attacks")
                 .buildAndExpand(weaponAttack.getId())
                 .toUri();
+
 
         return ResponseEntity.created(location).build();
     }
 
     @DeleteMapping("/{weaponId}/weapon-attacks/{weaponAttackId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAttackofWeapon(@PathVariable(name = "weaponAttackId") Long weaponAttackId, @PathVariable String weaponId) {
+    public void deleteAttackOfWeapon(@PathVariable(name = "weaponAttackId") Long weaponAttackId, @PathVariable String weaponId) {
         try {
             weaponAttackRepository.deleteById(weaponAttackId);
         } catch (EmptyResultDataAccessException e) {

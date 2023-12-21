@@ -71,4 +71,36 @@ public class WeaponRequest {
     public boolean isMartial() {
         return isMartial;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRarity(Rarity rarity) {
+        this.rarity = rarity;
+    }
+
+    public void setCost(Cost cost) {
+        this.cost = cost;
+    }
+
+    public void setDamageModifier(int damageModifier) {
+        this.damageModifier = damageModifier;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setProperties(List<WeaponProperty> properties) {
+        this.properties = properties;
+    }
+
+    public void setWeaponType(WeaponType weaponType) {
+        this.weaponType = weaponType;
+    }
+
+    public void setMartial(boolean martial) {
+        isMartial = martial;
+    }
 }

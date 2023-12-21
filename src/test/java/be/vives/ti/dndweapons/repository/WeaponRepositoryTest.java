@@ -128,17 +128,17 @@ class WeaponRepositoryTest {
                 false
         ));
 
-        List<Weapon> containsLong =
-                weaponRepository.findByNameContainingIgnoreCase("Long", PageRequest.of(0, 10)).stream().toList();
-        assertThat(containsLong.size()).isEqualTo(1);
-        assertThat(containsLong.get(0).getName()).isEqualTo("Longsword");
+        Page<Weapon> containsLong =
+                weaponRepository.findByNameContainingIgnoreCase("Long", PageRequest.of(0, 20));
+        assertThat(containsLong.getTotalElements()).isEqualTo(1);
+        assertThat(containsLong.getContent().get(0).getName()).isEqualTo("Longsword");
 
-        List<Weapon> containsOr =
-                weaponRepository.findByNameContainingIgnoreCase("Or", PageRequest.of(0, 10)).stream().toList();
-        assertThat(containsOr.size()).isEqualTo(2);
+        Page<Weapon> containsOr =
+                weaponRepository.findByNameContainingIgnoreCase("Or", PageRequest.of(0, 20));
+        assertThat(containsOr.getTotalElements()).isEqualTo(2);
 
-        List<Weapon> containsQ =
-                weaponRepository.findByNameContainingIgnoreCase("Q", PageRequest.of(0, 10)).stream().toList();
-        assertThat(containsQ.size()).isEqualTo(0);
+        Page<Weapon> containsQ =
+                weaponRepository.findByNameContainingIgnoreCase("Q", PageRequest.of(0, 20));
+        assertThat(containsQ.getTotalElements()).isEqualTo(0);
     }
 }

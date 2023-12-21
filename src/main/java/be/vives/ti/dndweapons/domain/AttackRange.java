@@ -10,7 +10,6 @@ import jakarta.validation.constraints.NotNull;
 @Embeddable
 public class AttackRange {
     @NotNull
-    @Enumerated(EnumType.STRING)
     private RangeType rangeType;
 
     @Min(0)

@@ -132,5 +132,20 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         damageRolls2.add(new DamageRoll(2, 8, DamageType.FIRE));
         AttackRange range2 = new AttackRange(RangeType.MELEE, null, null);
         attackRepository.save(new Attack("Flametongue Longsword", 0, AbilityType.DEXTERITY, damageRolls2, range2));
+
+        List<DamageRoll> damageRolls3 = new ArrayList<>();
+        AttackRange range3 = new AttackRange(RangeType.MELEE, null, null);
+        damageRolls3.add(new DamageRoll(1, 8, DamageType.SLASHING));
+        attackRepository.save(new Attack("Longsword", 0, AbilityType.STRENGTH , damageRolls3, range3));
+
+        List<DamageRoll> damageRolls4 = new ArrayList<>();
+        damageRolls4.add(new DamageRoll(1, 6, DamageType.PIERCING));
+        AttackRange range4 = new AttackRange(RangeType.RANGED, 80, 320);
+        attackRepository.save(new Attack("Shortbow", 0, AbilityType.DEXTERITY , damageRolls4, range4));
+
+        List<DamageRoll> damageRolls5 = new ArrayList<>();
+        damageRolls5.add(new DamageRoll(1, 10, DamageType.SLASHING));
+        AttackRange range5 = new AttackRange(RangeType.MELEE, null, null);
+        attackRepository.save(new Attack("Longsword (two-handed)", 0, AbilityType.STRENGTH , damageRolls5, range5));
     }
 }

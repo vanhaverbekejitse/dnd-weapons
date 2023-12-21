@@ -21,7 +21,6 @@ public class Attack {
 
     private int damageModifier;
 
-    @Enumerated(EnumType.STRING)
     private AbilityType abilityType;
 
     protected Attack() {
