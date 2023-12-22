@@ -970,6 +970,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         addFrostBrandLongSword();
         addJavelinOfLightning();
         addDevoteesCenser();
+        addReapersScream();
     }
 
     private void addDaggerOfVenom() {
