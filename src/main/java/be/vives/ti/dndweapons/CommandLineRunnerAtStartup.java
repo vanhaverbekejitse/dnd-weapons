@@ -417,7 +417,185 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
     }
 
     private void addMartialMeleeWeapons() {
+        addBattleaxe();
+        addFlail();
+        addGlaive();
+        addGreataxe();
+        addGreatsword();
+        addHalberd();
+        addLance();
         addLongsword();
+        addMaul();
+        addMorningstar();
+        addPike();
+        addRapier();
+        addScimitar();
+        addShortsword();
+        addTrident();
+        addWarPick();
+        addWarhammer();
+        addWhip();
+    }
+
+    private void addBattleaxe() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Battleaxe",
+                new Cost(10, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                4.0,
+                List.of(WeaponProperty.VERSATILE),
+                WeaponType.AXE,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Battleaxe",
+                List.of(new DamageRoll(1, 8, DamageType.SLASHING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack(
+                "Battleaxe (two-handed)",
+                List.of(new DamageRoll(1, 10, DamageType.SLASHING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weapon.addAttack(attack2);
+        weaponRepository.save(weapon);
+    }
+
+    private void addFlail() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Flail",
+                new Cost(10, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                2.0,
+                List.of(WeaponProperty.VERSATILE),
+                WeaponType.MACE,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Flail",
+                List.of(new DamageRoll(1, 8, DamageType.BLUDGEONING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addGlaive() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Glaive",
+                new Cost(20, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                6.0,
+                List.of(WeaponProperty.HEAVY, WeaponProperty.REACH, WeaponProperty.TWO_HANDED),
+                WeaponType.GLAIVE,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Glaive",
+                List.of(new DamageRoll(1, 10, DamageType.SLASHING)),
+                new AttackRange(RangeType.REACH, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addGreataxe() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Greataxe",
+                new Cost(30, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                7.0,
+                List.of(WeaponProperty.HEAVY, WeaponProperty.TWO_HANDED),
+                WeaponType.AXE,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Greataxe",
+                List.of(new DamageRoll(1, 12, DamageType.SLASHING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addGreatsword() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Greatsword",
+                new Cost(50, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                6.0,
+                List.of(WeaponProperty.HEAVY, WeaponProperty.TWO_HANDED),
+                WeaponType.SWORD,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Greatsword",
+                List.of(new DamageRoll(2, 6, DamageType.SLASHING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addHalberd() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Halberd",
+                new Cost(20, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                6.0,
+                List.of(WeaponProperty.HEAVY, WeaponProperty.REACH, WeaponProperty.TWO_HANDED),
+                WeaponType.AXE,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Halberd",
+                List.of(new DamageRoll(1, 10, DamageType.SLASHING)),
+                new AttackRange(RangeType.REACH, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addLance() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Lance",
+                new Cost(10, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                6.0,
+                List.of(WeaponProperty.REACH),
+                WeaponType.SPEAR,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Lance",
+                List.of(new DamageRoll(1, 12, DamageType.PIERCING)),
+                new AttackRange(RangeType.REACH, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
     }
 
     private void addLongsword() {
@@ -446,6 +624,247 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
 
         weapon.addAttack(attack1);
         weapon.addAttack(attack2);
+        weaponRepository.save(weapon);
+    }
+
+    private void addMaul() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Maul",
+                new Cost(10, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                10.0,
+                List.of(WeaponProperty.HEAVY, WeaponProperty.TWO_HANDED),
+                WeaponType.HAMMER,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Maul",
+                List.of(new DamageRoll(2, 6, DamageType.BLUDGEONING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addMorningstar() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Morningstar",
+                new Cost(15, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                4.0,
+                List.of(),
+                WeaponType.MACE,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Morningstar",
+                List.of(new DamageRoll(1, 8, DamageType.PIERCING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addPike() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Pike",
+                new Cost(5, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                18.0,
+                List.of(WeaponProperty.HEAVY, WeaponProperty.REACH, WeaponProperty.TWO_HANDED),
+                WeaponType.SPEAR,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Pike",
+                List.of(new DamageRoll(1, 10, DamageType.PIERCING)),
+                new AttackRange(RangeType.REACH, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addRapier() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Rapier",
+                new Cost(25, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                2.0,
+                List.of(WeaponProperty.FINESSE),
+                WeaponType.SWORD,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Rapier",
+                List.of(new DamageRoll(1, 8, DamageType.PIERCING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addScimitar() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Scimitar",
+                new Cost(25, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                3.0,
+                List.of(WeaponProperty.FINESSE, WeaponProperty.LIGHT),
+                WeaponType.SWORD,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Scimitar",
+                List.of(new DamageRoll(1, 6, DamageType.SLASHING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addShortsword() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Scimitar",
+                new Cost(10, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                2.0,
+                List.of(WeaponProperty.FINESSE, WeaponProperty.LIGHT),
+                WeaponType.SWORD,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Scimitar",
+                List.of(new DamageRoll(1, 6, DamageType.SLASHING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addTrident() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Trident",
+                new Cost(5, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                4.0,
+                List.of(WeaponProperty.THROWN, WeaponProperty.VERSATILE),
+                WeaponType.TRIDENT,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Trident",
+                List.of(new DamageRoll(1, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack(
+                "Trident (thrown)",
+                List.of(new DamageRoll(1, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.THROWN, 20, 60)
+        ));
+
+        WeaponAttack attack3 = weaponAttackRepository.save(new WeaponAttack(
+                "Trident (two-handed)",
+                List.of(new DamageRoll(1, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weapon.addAttack(attack2);
+        weapon.addAttack(attack3);
+        weaponRepository.save(weapon);
+    }
+
+    private void addWarPick() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "War pick",
+                new Cost(5, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                2.0,
+                List.of(),
+                WeaponType.PICKAXE,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "War pick",
+                List.of(new DamageRoll(1, 8, DamageType.PIERCING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addWarhammer() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Warhammer",
+                new Cost(15, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                2.0,
+                List.of(WeaponProperty.VERSATILE),
+                WeaponType.HAMMER,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Warhammer",
+                List.of(new DamageRoll(1, 8, DamageType.BLUDGEONING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack(
+                "Warhammer (two-handed)",
+                List.of(new DamageRoll(1, 10, DamageType.BLUDGEONING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weapon.addAttack(attack2);
+        weaponRepository.save(weapon);
+    }
+
+    private void addWhip() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Whip",
+                new Cost(2, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                3.0,
+                List.of(WeaponProperty.FINESSE, WeaponProperty.REACH),
+                WeaponType.WHIP,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Whip",
+                List.of(new DamageRoll(1, 4, DamageType.SLASHING)),
+                new AttackRange(RangeType.REACH, null, null)
+        ));
+
+        weapon.addAttack(attack1);
         weaponRepository.save(weapon);
     }
 
