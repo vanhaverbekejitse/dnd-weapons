@@ -35,6 +35,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         addSimpleRangedWeapons();
         addMartialMeleeWeapons();
         addMartialRangedWeapons();
+        addMagicWeapons();
     }
 
     private void addSimpleMeleeWeapons() {
@@ -739,7 +740,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
 
     private void addShortsword() {
         Weapon weapon = weaponRepository.save(new Weapon(
-                "Scimitar",
+                "Shortsword",
                 new Cost(10, CoinType.GP),
                 Rarity.COMMON,
                 0,
@@ -750,7 +751,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         ));
 
         WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
-                "Scimitar",
+                "Shortsword",
                 List.of(new DamageRoll(1, 6, DamageType.SLASHING)),
                 new AttackRange(RangeType.MELEE, null, null)
         ));
@@ -963,6 +964,195 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         weaponRepository.save(weapon);
     }
 
+    private void addMagicWeapons() {
+        addDaggerOfVenom();
+        addFlameTongueLongsword();
+        addFrostBrandLongSword();
+        addJavelinOfLightning();
+        addDevoteesCenser();
+    }
+
+    private void addDaggerOfVenom() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Dagger of venom",
+                new Cost(8000, CoinType.GP),
+                Rarity.RARE,
+                1,
+                1.0,
+                List.of(WeaponProperty.LIGHT, WeaponProperty.FINESSE, WeaponProperty.THROWN),
+                WeaponType.KNIFE,
+                false
+        ));
+
+        WeaponAttack attack = weaponAttackRepository.save(new WeaponAttack(
+                "Dagger of venom",
+                List.of(new DamageRoll(1, 4, DamageType.PIERCING), new DamageRoll(2, 10, DamageType.POISON)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack(
+                "Dagger of venom (thrown)",
+                List.of(new DamageRoll(1, 4, DamageType.PIERCING), new DamageRoll(2, 10, DamageType.POISON)),
+                new AttackRange(RangeType.THROWN, 20, 60)
+        ));
+
+        WeaponAttack attack3 = weaponAttackRepository.save(new WeaponAttack(
+                "Dagger",
+                List.of(new DamageRoll(1, 4, DamageType.PIERCING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack4 = weaponAttackRepository.save(new WeaponAttack(
+                "Dagger (thrown)",
+                List.of(new DamageRoll(1, 4, DamageType.PIERCING)),
+                new AttackRange(RangeType.THROWN, 20, 60)
+        ));
+
+        weapon.addAttack(attack);
+        weapon.addAttack(attack2);
+        weapon.addAttack(attack3);
+        weapon.addAttack(attack4);
+        weaponRepository.save(weapon);
+    }
+
+    private void addFlameTongueLongsword() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Flame Tongue Longsword",
+                new Cost(5000, CoinType.GP),
+                Rarity.RARE,
+                0,
+                3.0,
+                List.of(WeaponProperty.VERSATILE),
+                WeaponType.SWORD,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Flame Tongue Longsword",
+                List.of(new DamageRoll(1, 8, DamageType.SLASHING), new DamageRoll(2, 6, DamageType.FIRE)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack(
+                "Flame Tongue Longsword (two-handed)",
+                List.of(new DamageRoll(1, 8, DamageType.SLASHING), new DamageRoll(2, 6, DamageType.FIRE)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weapon.addAttack(attack2);
+        weaponRepository.save(weapon);
+    }
+
+    private void addFrostBrandLongSword() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Frost Brand Longsword",
+                new Cost(10000, CoinType.GP),
+                Rarity.VERY_RARE,
+                0,
+                3.0,
+                List.of(WeaponProperty.VERSATILE),
+                WeaponType.SWORD,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Frost Brand Longsword",
+                List.of(new DamageRoll(1, 8, DamageType.SLASHING), new DamageRoll(1, 6, DamageType.COLD)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack(
+                "Frost Brand Longsword (two-handed)",
+                List.of(new DamageRoll(1, 8, DamageType.SLASHING), new DamageRoll(1, 6, DamageType.COLD)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weapon.addAttack(attack2);
+        weaponRepository.save(weapon);
+    }
+
+    private void addJavelinOfLightning() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Javelin of lightning",
+                new Cost(750, CoinType.GP),
+                Rarity.UNCOMMON,
+                0,
+                2.0,
+                List.of(WeaponProperty.THROWN),
+                WeaponType.SPEAR,
+                false
+        ));
+
+        WeaponAttack attack = weaponAttackRepository.save(new WeaponAttack(
+                "Javelin",
+                List.of(new DamageRoll(1, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack(
+                "Javelin (thrown)",
+                List.of(new DamageRoll(1, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.THROWN, 30, 120)
+        ));
+
+        WeaponAttack attack3 = weaponAttackRepository.save(new WeaponAttack(
+                "Javelin of lightning (thrown)",
+                List.of(new DamageRoll(1, 6, DamageType.PIERCING), new DamageRoll(4, 6, DamageType.LIGHTNING)),
+                new AttackRange(RangeType.THROWN, 120, 120)
+        ));
+
+        weapon.addAttack(attack);
+        weapon.addAttack(attack2);
+        weapon.addAttack(attack3);
+        weaponRepository.save(weapon);
+    }
+
+    private void addDevoteesCenser() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Devotee's censer",
+                new Cost(6000, CoinType.GP),
+                Rarity.RARE,
+                0,
+                2.0,
+                List.of(WeaponProperty.VERSATILE),
+                WeaponType.MACE,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Devotee's censer",
+                List.of(new DamageRoll(1, 8, DamageType.BLUDGEONING), new DamageRoll(1, 8, DamageType.RADIANT)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addReapersScream() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Morningstar",
+                new Cost(50000, CoinType.GP),
+                Rarity.LEGENDARY,
+                2,
+                4.0,
+                List.of(),
+                WeaponType.MACE,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Morningstar",
+                List.of(new DamageRoll(1, 8, DamageType.NECROTIC)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
     private void addAttacks() {
         // LONGSWORD
         List<DamageRoll> damageRolls1 = new ArrayList<>();
@@ -977,11 +1167,13 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         AttackRange range2 = new AttackRange(RangeType.MELEE, null, null);
         attackRepository.save(new Attack("Flametongue Longsword", 0, AbilityType.DEXTERITY, damageRolls2, range2));
 
+        // SHORTBOW
         List<DamageRoll> damageRolls4 = new ArrayList<>();
         damageRolls4.add(new DamageRoll(1, 6, DamageType.PIERCING));
         AttackRange range4 = new AttackRange(RangeType.RANGED, 80, 320);
         attackRepository.save(new Attack("Shortbow", 0, AbilityType.DEXTERITY , damageRolls4, range4));
 
+        // LONGSWORD (TWO-HANDED)
         List<DamageRoll> damageRolls5 = new ArrayList<>();
         damageRolls5.add(new DamageRoll(1, 10, DamageType.SLASHING));
         AttackRange range5 = new AttackRange(RangeType.MELEE, null, null);
