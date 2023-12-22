@@ -32,8 +32,10 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
 
     private void addWeapons() {
         addLongsword();
-        addShortbow();
+        addCrossbowLight();
         addDart();
+        addShortbow();
+        addSling();
     }
 
     private void addLongsword() {
