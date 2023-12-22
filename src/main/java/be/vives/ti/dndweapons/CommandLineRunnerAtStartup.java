@@ -31,12 +31,12 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
     }
 
     private void addWeapons() {
-        addLongSword();
-        addShortBow();
+        addLongsword();
+        addShortbow();
         addDart();
     }
 
-    private void addLongSword() {
+    private void addLongsword() {
         Weapon weapon = weaponRepository.save(new Weapon(
                 "Longsword",
                 new Cost(15, CoinType.GP),
@@ -65,21 +65,21 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         weaponRepository.save(weapon);
     }
 
-    private void addShortBow() {
+    private void addCrossbowLight() {
         Weapon weapon = weaponRepository.save(new Weapon(
-                "Shortbow",
+                "Crossbow, light",
                 new Cost(25, CoinType.GP),
                 Rarity.COMMON,
                 0,
-                2.0,
-                List.of(WeaponProperty.AMMUNITION, WeaponProperty.TWO_HANDED),
-                WeaponType.BOW,
+                5.0,
+                List.of(WeaponProperty.AMMUNITION, WeaponProperty.LOADING, WeaponProperty.TWO_HANDED),
+                WeaponType.CROSSBOW,
                 false
         ));
 
         WeaponAttack attack = weaponAttackRepository.save(new WeaponAttack(
-                "Shortbow",
-                List.of(new DamageRoll(1, 6, DamageType.PIERCING)),
+                "Crossbow, light",
+                List.of(new DamageRoll(1, 8, DamageType.PIERCING)),
                 new AttackRange(RangeType.RANGED, 80, 320)
         ));
 
@@ -103,6 +103,50 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
                 "Dart",
                 List.of(new DamageRoll(1, 4, DamageType.PIERCING)),
                 new AttackRange(RangeType.THROWN, 20, 60)
+        ));
+
+        weapon.addAttack(attack);
+        weaponRepository.save(weapon);
+    }
+
+    private void addSling() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Sling",
+                new Cost(1, CoinType.SP),
+                Rarity.COMMON,
+                0,
+                0.0,
+                List.of(WeaponProperty.AMMUNITION),
+                WeaponType.DART,
+                false
+        ));
+
+        WeaponAttack attack = weaponAttackRepository.save(new WeaponAttack(
+                "Sling",
+                List.of(new DamageRoll(1, 4, DamageType.BLUDGEONING)),
+                new AttackRange(RangeType.THROWN, 30, 120)
+        ));
+
+        weapon.addAttack(attack);
+        weaponRepository.save(weapon);
+    }
+
+    private void addShortbow() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Shortbow",
+                new Cost(25, CoinType.GP),
+                Rarity.COMMON,
+                0,
+                2.0,
+                List.of(WeaponProperty.AMMUNITION, WeaponProperty.TWO_HANDED),
+                WeaponType.BOW,
+                false
+        ));
+
+        WeaponAttack attack = weaponAttackRepository.save(new WeaponAttack(
+                "Shortbow",
+                List.of(new DamageRoll(1, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.RANGED, 80, 320)
         ));
 
         weapon.addAttack(attack);
