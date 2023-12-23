@@ -1,8 +1,8 @@
 package be.vives.ti.dndweapons.domain;
 
-import be.vives.ti.dndweapons.domain.enums.WeaponType;
 import be.vives.ti.dndweapons.domain.enums.Rarity;
 import be.vives.ti.dndweapons.domain.enums.WeaponProperty;
+import be.vives.ti.dndweapons.domain.enums.WeaponType;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ public class Weapon {
 
     @Enumerated(EnumType.STRING)
     private Rarity rarity;
+
 
     @Embedded
     private Cost cost;

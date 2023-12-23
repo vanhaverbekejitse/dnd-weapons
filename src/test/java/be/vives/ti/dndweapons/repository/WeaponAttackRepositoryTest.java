@@ -1,10 +1,8 @@
 package be.vives.ti.dndweapons.repository;
 
-import be.vives.ti.dndweapons.domain.Attack;
 import be.vives.ti.dndweapons.domain.AttackRange;
 import be.vives.ti.dndweapons.domain.DamageRoll;
 import be.vives.ti.dndweapons.domain.WeaponAttack;
-import be.vives.ti.dndweapons.domain.enums.AbilityType;
 import be.vives.ti.dndweapons.domain.enums.DamageType;
 import be.vives.ti.dndweapons.domain.enums.RangeType;
 import org.junit.jupiter.api.Test;

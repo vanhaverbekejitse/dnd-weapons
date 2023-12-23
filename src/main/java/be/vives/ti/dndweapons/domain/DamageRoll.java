@@ -2,8 +2,6 @@ package be.vives.ti.dndweapons.domain;
 
 import be.vives.ti.dndweapons.domain.enums.DamageType;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 

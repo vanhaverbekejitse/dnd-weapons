@@ -1,6 +1,7 @@
 package be.vives.ti.dndweapons.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
 
 import java.util.List;
 

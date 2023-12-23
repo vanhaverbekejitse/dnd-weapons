@@ -1,11 +1,9 @@
 package be.vives.ti.dndweapons.requests;
 
 import be.vives.ti.dndweapons.domain.Cost;
-import be.vives.ti.dndweapons.domain.WeaponAttack;
 import be.vives.ti.dndweapons.domain.enums.Rarity;
 import be.vives.ti.dndweapons.domain.enums.WeaponProperty;
 import be.vives.ti.dndweapons.domain.enums.WeaponType;
-import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

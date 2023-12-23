@@ -1,9 +1,8 @@
 package be.vives.ti.dndweapons.responses;
 
 import be.vives.ti.dndweapons.domain.Weapon;
-import be.vives.ti.dndweapons.domain.enums.WeaponType;
 import be.vives.ti.dndweapons.domain.enums.Rarity;
-import com.fasterxml.jackson.annotation.JsonGetter;
+import be.vives.ti.dndweapons.domain.enums.WeaponType;
 
 public class WeaponListResponse {
     private Long id;

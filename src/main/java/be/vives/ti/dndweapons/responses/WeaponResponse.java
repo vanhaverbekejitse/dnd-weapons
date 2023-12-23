@@ -1,6 +1,8 @@
 package be.vives.ti.dndweapons.responses;
 
-import be.vives.ti.dndweapons.domain.*;
+import be.vives.ti.dndweapons.domain.Cost;
+import be.vives.ti.dndweapons.domain.Weapon;
+import be.vives.ti.dndweapons.domain.WeaponAttack;
 import be.vives.ti.dndweapons.domain.enums.WeaponProperty;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
