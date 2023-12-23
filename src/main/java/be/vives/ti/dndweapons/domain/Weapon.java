@@ -19,7 +19,6 @@ public class Weapon {
     @Enumerated(EnumType.STRING)
     private Rarity rarity;
 
-
     @Embedded
     private Cost cost;
 
