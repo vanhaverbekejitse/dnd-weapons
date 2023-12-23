@@ -38,7 +38,7 @@ public class WeaponController {
 
     @Operation(summary = "Get all weapons", description = "Returns a list with all weapons")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved the list of attacks",
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved the list of weapons",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = WeaponListResponse.class))) })
     })
@@ -49,7 +49,7 @@ public class WeaponController {
 
     @Operation(summary = "Get all weapons containing query", description = "Returns a list with all weapons where the name contains the query")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved the list of attacks",
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved the list of weapons",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = WeaponListResponse.class))) })
     })
@@ -131,7 +131,7 @@ public class WeaponController {
                     content = @Content)
     })
     @PutMapping("/{weaponId}")
-    public WeaponResponse putAttack(@PathVariable(name = "weaponId") Long weaponId,
+    public WeaponResponse putWeapon(@PathVariable(name = "weaponId") Long weaponId,
                                     @RequestBody @Valid WeaponRequest weaponRequest) {
         Weapon weapon = weaponRepository.findById(Long.parseLong(weaponId.toString())).orElseThrow(
                 () -> new ResourceNotFoundException(weaponId.toString(), "weapon")
