@@ -1,9 +1,5 @@
-# TODO
-Alle vereiste endpoints\
-README\
-Testen\
-Meer startdata\
-Validatie voor nieuwe endpoints\
-Profiles\
-Deployment\
-(servicelaag?)
+# Domeinmodel
+
+
+# Swagger documentatie
+https://dnd-weapons.azurewebsites.net/swagger
