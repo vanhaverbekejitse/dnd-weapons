@@ -60,7 +60,7 @@ public class WeaponController {
         return weaponRepository.findByNameContainingIgnoreCase(query).stream().map(WeaponListResponse::new).toList();
     }
 
-    @Operation(summary = "Find weapon by id", description = "Returns one weapon by id")
+    @Operation(summary = "Find weapon by id", description = "Returns one weapon with all its details by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the weapon",
                     content = { @Content(mediaType = "application/json",
