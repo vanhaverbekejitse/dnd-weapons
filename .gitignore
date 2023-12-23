@@ -32,5 +32,9 @@ build/
 ### VS Code ###
 .vscode/
 
+<<<<<<< HEAD
 .github/workflows/main_dnd-weapons.yml
 
+=======
+#.github/workflows/main_dnd-weapons.yml
+>>>>>>> c5fdd0f5cd32ad21f18fa13f28d0945099539c8e
