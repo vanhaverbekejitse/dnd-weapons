@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-#.github/workflows/main_dnd-weapons.yml
+.github/workflows/main_dnd-weapons.yml
