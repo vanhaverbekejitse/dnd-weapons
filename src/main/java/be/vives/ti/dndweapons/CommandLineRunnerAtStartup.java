@@ -950,7 +950,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
                 0,
                 3.0,
                 List.of(WeaponProperty.AMMUNITION, WeaponProperty.LIGHT, WeaponProperty.TWO_HANDED),
-                WeaponType.CROSSBOW,
+                WeaponType.BOW,
                 true
         ));
 
@@ -1134,7 +1134,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
 
     private void addReapersScream() {
         Weapon weapon = weaponRepository.save(new Weapon(
-                "Morningstar",
+                "Reaper's Scream",
                 new Cost(50000, CoinType.GP),
                 Rarity.LEGENDARY,
                 2,
@@ -1145,7 +1145,7 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         ));
 
         WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
-                "Morningstar",
+                "Reaper's Scream",
                 List.of(new DamageRoll(1, 8, DamageType.NECROTIC)),
                 new AttackRange(RangeType.MELEE, null, null)
         ));
@@ -1161,23 +1161,23 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         damageRolls1.add(new DamageRoll(1, 8, DamageType.SLASHING));
         attackRepository.save(new Attack("Longsword", 0, AbilityType.STRENGTH , damageRolls1, range1));
 
+        // LONGSWORD (TWO-HANDED)
+        List<DamageRoll> damageRolls5 = new ArrayList<>();
+        damageRolls5.add(new DamageRoll(1, 10, DamageType.SLASHING));
+        AttackRange range5 = new AttackRange(RangeType.MELEE, null, null);
+        attackRepository.save(new Attack("Longsword (two-handed)", 0, AbilityType.STRENGTH , damageRolls5, range5));
+
         // FLAMETONGUE LONGSWORD
         List<DamageRoll> damageRolls2 = new ArrayList<>();
         damageRolls2.add(new DamageRoll(1, 8, DamageType.SLASHING));
-        damageRolls2.add(new DamageRoll(2, 8, DamageType.FIRE));
+        damageRolls2.add(new DamageRoll(2, 6, DamageType.FIRE));
         AttackRange range2 = new AttackRange(RangeType.MELEE, null, null);
-        attackRepository.save(new Attack("Flametongue Longsword", 0, AbilityType.DEXTERITY, damageRolls2, range2));
+        attackRepository.save(new Attack("Flame Tongue Longsword", 0, AbilityType.DEXTERITY, damageRolls2, range2));
 
         // SHORTBOW
         List<DamageRoll> damageRolls4 = new ArrayList<>();
         damageRolls4.add(new DamageRoll(1, 6, DamageType.PIERCING));
         AttackRange range4 = new AttackRange(RangeType.RANGED, 80, 320);
         attackRepository.save(new Attack("Shortbow", 0, AbilityType.DEXTERITY , damageRolls4, range4));
-
-        // LONGSWORD (TWO-HANDED)
-        List<DamageRoll> damageRolls5 = new ArrayList<>();
-        damageRolls5.add(new DamageRoll(1, 10, DamageType.SLASHING));
-        AttackRange range5 = new AttackRange(RangeType.MELEE, null, null);
-        attackRepository.save(new Attack("Longsword (two-handed)", 0, AbilityType.STRENGTH , damageRolls5, range5));
     }
 }
