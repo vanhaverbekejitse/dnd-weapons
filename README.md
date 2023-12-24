@@ -77,3 +77,8 @@ Enkel aanvallen met het type ranged of thrown hebben een normal en een long rang
 ## Swagger documentatie
 Alle endpoints zijn gedocumenteerd met swagger.\
 https://dnd-weapons.azurewebsites.net/swagger
+
+## Deployment
+Gedeployd met Azure via een publieke repository.\
+(de eerste request kan soms even duren omdat de deployment idle wordt)\
+https://github.com/vanhaverbekejitse/dnd-weapons
