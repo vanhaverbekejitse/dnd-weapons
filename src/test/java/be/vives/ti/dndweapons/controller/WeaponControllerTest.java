@@ -223,6 +223,27 @@ public class WeaponControllerTest {
     }
 
     @Test
+    void createWeaponWithValidationErrorInvalidCost() throws Exception {
+        WeaponRequest request = new WeaponRequest();
+        request.setName("Longsword");
+        request.setCost(new Cost(-1, CoinType.GP));
+        request.setRarity(Rarity.COMMON);
+        request.setDamageModifier(0);
+        request.setWeight(3.0);
+        request.setProperties(List.of(WeaponProperty.VERSATILE));
+        request.setWeaponType(WeaponType.MELEE_WEAPON);
+        request.setMartial(true);
+
+        mvc.perform(post(baseUrl)
+                        .content(objectMapper.writeValueAsString(request))
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isBadRequest());
+
+        verifyNoInteractions(attackRepository);
+    }
+
+    @Test
     void updateWeapon() throws Exception {
         Long id = 1L;
 

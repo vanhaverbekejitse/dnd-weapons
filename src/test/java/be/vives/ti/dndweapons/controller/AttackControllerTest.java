@@ -167,6 +167,82 @@ public class AttackControllerTest {
     }
 
     @Test
+    void createAttackWithValidationErrorInvalidDamageRoll() throws Exception {
+        AttackRange range = new AttackRange(RangeType.RANGED, 150, 600);
+        AttackRequest request = new AttackRequest();
+        request.setName("Longbow");
+        request.setDamageModifier(0);
+        request.setAbilityType(AbilityType.DEXTERITY);
+        request.setDamageRolls(List.of(new DamageRoll(0, 8, DamageType.PIERCING)));  // verkeerde amount
+        request.setRange(range);
+
+        mvc.perform(post(baseUrl)
+                        .content(objectMapper.writeValueAsString(request))
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isBadRequest());
+
+        verifyNoInteractions(attackRepository);
+    }
+
+    @Test
+    void createAttackWithValidationErrorLongRangeLowerThanNormalRange() throws Exception {
+        AttackRange range = new AttackRange(RangeType.RANGED, 600, 100);
+        AttackRequest request = new AttackRequest();
+        request.setName("Longbow");
+        request.setDamageModifier(0);
+        request.setAbilityType(AbilityType.DEXTERITY);
+        request.setDamageRolls(List.of(new DamageRoll(1, 8, DamageType.PIERCING)));
+        request.setRange(range);
+
+        mvc.perform(post(baseUrl)
+                        .content(objectMapper.writeValueAsString(request))
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isBadRequest());
+
+        verifyNoInteractions(attackRepository);
+    }
+
+    @Test
+    void createAttackWithValidationErrorMeleeRangeTypeWithNormalRange() throws Exception {
+        AttackRange range = new AttackRange(RangeType.MELEE, 600, null);
+        AttackRequest request = new AttackRequest();
+        request.setName("Longbow");
+        request.setDamageModifier(0);
+        request.setAbilityType(AbilityType.DEXTERITY);
+        request.setDamageRolls(List.of(new DamageRoll(1, 8, DamageType.PIERCING)));
+        request.setRange(range);
+
+        mvc.perform(post(baseUrl)
+                        .content(objectMapper.writeValueAsString(request))
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isBadRequest());
+
+        verifyNoInteractions(attackRepository);
+    }
+
+    @Test
+    void createAttackWithValidationErrorRangedRangeTypeWithoutLongRange() throws Exception {
+        AttackRange range = new AttackRange(RangeType.RANGED, 600, null);
+        AttackRequest request = new AttackRequest();
+        request.setName("Longbow");
+        request.setDamageModifier(0);
+        request.setAbilityType(AbilityType.DEXTERITY);
+        request.setDamageRolls(List.of(new DamageRoll(1, 8, DamageType.PIERCING)));
+        request.setRange(range);
+
+        mvc.perform(post(baseUrl)
+                        .content(objectMapper.writeValueAsString(request))
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isBadRequest());
+
+        verifyNoInteractions(attackRepository);
+    }
+
+    @Test
     void updateAttack() throws Exception {
         Long id = 1L;
 
