@@ -2,9 +2,11 @@ package be.vives.ti.dndweapons.domain;
 
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
+import jakarta.persistence.MappedSuperclass;
 
 import java.util.List;
 
+@MappedSuperclass
 public abstract class BaseAttack {
     private String name;
 
