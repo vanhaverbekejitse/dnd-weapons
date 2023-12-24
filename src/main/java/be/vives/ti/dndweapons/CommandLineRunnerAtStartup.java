@@ -971,6 +971,11 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         addJavelinOfLightning();
         addDevoteesCenser();
         addReapersScream();
+        addBerserkerGreataxe();
+        addSunbBlade();
+        addStormBoomerang();
+        addJavelinOfBackbiting();
+        addSpearOfBackbiting();
     }
 
     private void addDaggerOfVenom() {
@@ -1151,6 +1156,144 @@ public class CommandLineRunnerAtStartup implements CommandLineRunner {
         ));
 
         weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addBerserkerGreataxe() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Berserker greataxe",
+                new Cost(4000, CoinType.GP),
+                Rarity.RARE,
+                1,
+                7.0,
+                List.of(WeaponProperty.HEAVY, WeaponProperty.TWO_HANDED),
+                WeaponType.AXE,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Berserker greataxe",
+                List.of(new DamageRoll(1, 12, DamageType.SLASHING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weaponRepository.save(weapon);
+    }
+
+    private void addSunbBlade() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Sun blade",
+                new Cost(8000, CoinType.GP),
+                Rarity.RARE,
+                2,
+                3.0,
+                List.of(WeaponProperty.VERSATILE),
+                WeaponType.SWORD,
+                true
+        ));
+
+        WeaponAttack attack1 = weaponAttackRepository.save(new WeaponAttack(
+                "Sun blade",
+                List.of(new DamageRoll(1, 8, DamageType.RADIANT)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack(
+                "Sun blade (two-handed)",
+                List.of(new DamageRoll(1, 10, DamageType.RADIANT)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack1);
+        weapon.addAttack(attack2);
+        weaponRepository.save(weapon);
+    }
+
+    private void addStormBoomerang() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Storm Boomerang",
+                new Cost(1500, CoinType.CP),
+                Rarity.UNCOMMON,
+                0,
+                1.0,
+                List.of(WeaponProperty.LIGHT, WeaponProperty.THROWN),
+                WeaponType.RANGED_WEAPON,
+                false
+        ));
+
+        WeaponAttack attack = weaponAttackRepository.save(new WeaponAttack(
+                "Storm Boomerang",
+                List.of(new DamageRoll(1, 4, DamageType.BLUDGEONING), new DamageRoll(3, 4, DamageType.THUNDER)),
+                new AttackRange(RangeType.THROWN, 60, 120)
+        ));
+
+        weapon.addAttack(attack);
+        weaponRepository.save(weapon);
+    }
+
+    private void addJavelinOfBackbiting() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Javelin of backbiting",
+                new Cost(10000, CoinType.GP),
+                Rarity.VERY_RARE,
+                2,
+                2.0,
+                List.of(WeaponProperty.THROWN),
+                WeaponType.SPEAR,
+                false
+        ));
+
+        WeaponAttack attack = weaponAttackRepository.save(new WeaponAttack(
+                "Javelin of backbiting",
+                List.of(new DamageRoll(1, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack(
+                "Javelin of backbiting (thrown)",
+                List.of(new DamageRoll(2, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.THROWN, 60, 150)
+        ));
+
+        weapon.addAttack(attack);
+        weapon.addAttack(attack2);
+        weaponRepository.save(weapon);
+    }
+
+    private void addSpearOfBackbiting() {
+        Weapon weapon = weaponRepository.save(new Weapon(
+                "Spear of backbiting",
+                new Cost(10000, CoinType.GP),
+                Rarity.VERY_RARE,
+                2,
+                3.0,
+                List.of(WeaponProperty.VERSATILE, WeaponProperty.THROWN),
+                WeaponType.SPEAR,
+                false
+        ));
+
+        WeaponAttack attack = weaponAttackRepository.save(new WeaponAttack(
+                "Spear of backbiting",
+                List.of(new DamageRoll(1, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        WeaponAttack attack2 = weaponAttackRepository.save(new WeaponAttack(
+                "Spear of backbiting (thrown)",
+                List.of(new DamageRoll(2, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.THROWN, 50, 90)
+        ));
+
+        WeaponAttack attack3 = weaponAttackRepository.save(new WeaponAttack(
+                "Spear of backbiting (two-handed)",
+                List.of(new DamageRoll(1, 6, DamageType.PIERCING)),
+                new AttackRange(RangeType.MELEE, null, null)
+        ));
+
+        weapon.addAttack(attack);
+        weapon.addAttack(attack2);
+        weapon.addAttack(attack3);
         weaponRepository.save(weapon);
     }
 
