@@ -80,5 +80,5 @@ https://dnd-weapons.azurewebsites.net/swagger
 
 ## Deployment
 Gedeployd met Azure via een publieke repository.\
-(de eerste request kan soms even duren omdat de deployment idle wordt)\
+(de eerste request kan soms even duren omdat de deployment idle wordt ~30sec)\
 https://github.com/vanhaverbekejitse/dnd-weapons
