@@ -79,6 +79,6 @@ Alle endpoints zijn gedocumenteerd met swagger.\
 https://dnd-weapons.azurewebsites.net/swagger
 
 ## Deployment
-Gedeployd met Azure via een publieke repository.\
+Gedeployd met een free plan van Azure via een publieke github repository.\
 (de eerste request kan soms even duren omdat de deployment idle wordt ~30sec)\
 https://github.com/vanhaverbekejitse/dnd-weapons
